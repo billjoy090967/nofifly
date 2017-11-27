@@ -1,0 +1,8 @@
+{
+  "name": "notifly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/billjoy090967/notifly.git",
+  "author": "Bill Joy",
+  "license": "MIT"
+}
