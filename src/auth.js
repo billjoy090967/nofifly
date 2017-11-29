@@ -7,7 +7,7 @@ clientID: 'from Auth0',
 redirectUri:'http://localhost:3000/callback',
 audience: 'https://api.notifly.com',
 responseType:  'token id_token',
-scope: 'openid admin'
+scope: 'openid'
   })
 
 return {
