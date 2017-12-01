@@ -20,7 +20,7 @@ const styles = theme => ({
 })
 
 const userMenuItem = user => {
-  return <MenuItem value={user._id}>{user.lastName}</MenuItem>
+  return <MenuItem value={user._id}>{user.email}</MenuItem>
 }
 
 class EditUserForm extends React.Component {
@@ -76,6 +76,16 @@ class EditUserForm extends React.Component {
           margin="normal"
           className={classes.input}
           required
+        />
+        <TextField
+          name="email"
+          label="Email Address"
+          value={this.props.editUser.email}
+          onChange={e => {
+            this.props.onChange('email', e.target.value)
+          }}
+          margin="normal"
+          className={classes.input}
         />
         <TextField
           name="zipcode"

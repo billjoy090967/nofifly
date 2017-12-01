@@ -7,7 +7,7 @@ const {
   getCoupon,
   updateCoupon,
   deleteCoupon,
-  listCoupon,
+  findCoupon,
   createUser,
   getUser,
   updateUser,
@@ -37,11 +37,9 @@ const checkRequiredFields = require('./lib/check-required-fields')
 const cors = require('cors')
 
 const postUserRequiredFieldCheck = checkRequiredFields([
-  'userId',
   'firstName',
   'lastName',
   'email',
-  'password',
   'zipcode'
 ])
 const putUserRequiredFieldCheck = checkRequiredFields([
@@ -57,8 +55,7 @@ const couponRequiredFieldCheck = checkRequiredFields([
 
 const couponRequiredPutFieldCheck = checkRequiredFields([
   '_id',
-  '_rev',
-  'couponID'
+  '_rev'
 ])
 
 app.use(cors({ credentials: true }))
@@ -135,8 +132,8 @@ app.get('/users', (req, res, next) => {
   if (filter) {
     options = {
       include_docs: true,
-      startkey: 'resource_' + last(searchStr),
-      endkey: 'resource_' + last(searchStr) + '\ufff0'
+      startkey: 'user_' + last(searchStr),
+      endkey: 'user_' + last(searchStr) + '\ufff0'
     }
   } else {
     options = {
@@ -210,7 +207,7 @@ app.put('/coupons/:id', (req, res, next) => {
 
 app.delete('/coupons/:id', async (req, res, next) => {
   const coupons = await checkCouponId(req.params.id)
-  console.log(resources)
+  console.log(coupons)
   if (coupons === 0) {
     deleteCoupon(path(['params', 'id'], req))
       .then(result => res.status(200).send(result))

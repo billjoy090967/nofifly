@@ -8,6 +8,7 @@ db.bulkDocs([
   {
     _id: 'user_billjoy090967@gmail.com',
     type: 'user',
+    email: 'billjoy090967@gmail.com',
     firstName: 'Bill',
     lastName: 'Joy',
     zipcode: '29429'
@@ -46,6 +47,7 @@ db.bulkDocs([
   {
     _id: 'user_tiffanyjoy160@gmail.com',
     type: 'user',
+    email: 'tiffanyjoy160@gmail.com',
     firstName: 'Tiffany',
     lastName: 'Joy',
     zipcode: '29429'

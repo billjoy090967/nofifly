@@ -12,7 +12,7 @@ import { isEmpty, assoc } from 'ramda'
 import history from '../history'
 const url = process.env.REACT_APP_BASE_URL
 
-export const setResources = async (dispatch, getState) => {
+export const setUsers = async (dispatch, getState) => {
   const response = await fetch(`${url}/users`).then(res => res.json())
   dispatch({ type: SET_USERS, payload: response })
 }
@@ -76,15 +76,16 @@ export const addEditUser = (data, history) => async (dispatch, getState) => {
 }
 
 export const isActive = async (dispatch, getState) => {
-  const currentData = !isEmpty(getState().newUser.email_address)
+  const currentData = !isEmpty(getState().newUser.email)
     ? getState().newUser
     : getState().editUser
-  const { type, firstName, lastName, zipcode } = currentData
+  const { type, firstName, lastName, email, zipcode } = currentData
 
   if (
     isEmpty(type) ||
     isEmpty(firstName) ||
     isEmpty(lastName) ||
+    isEmpty(email) ||
     isEmpty(zipcode)
   ) {
     dispatch({ type: IS_ACTIVE, payload: true })

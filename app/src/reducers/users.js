@@ -29,6 +29,7 @@ const newUserDefault = {
   type: '',
   firstName: '',
   lastName: '',
+  email: '',
   zipcode: ''
 }
 export const newUser = (state = newUserDefault, action) => {

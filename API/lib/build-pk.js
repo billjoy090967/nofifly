@@ -10,12 +10,6 @@ const {
 } = require('ramda')
 module.exports = (prefix, value) => {
   valueArr = split(value)
-  return compose(
-    concat(prefix),
-    join('-'),
-    reject(s => s === ' ' || s === '–'),
-    split(' '),
-    trim,
-    toLower
-  )(value)
+
+  return compose(concat(prefix), trim, toLower)(value)
 }
