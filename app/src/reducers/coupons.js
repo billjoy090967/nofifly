@@ -30,13 +30,15 @@ export const currentCoupon = (state = {}, action) => {
 }
 
 const setDefaultCoupon = {
+  userId: '',
+  type: '',
   category: '',
   name: '',
   deal: '',
-  expiration: '',
+  expirationDate: '',
   description: ''
 }
-export const category = (state = setDefaultCategory, action) => {
+export const category = (state = setDefaultCoupon, action) => {
   switch (action.type) {
     case UPDATE_NEW_COUPON_FORM:
       return merge(state, action.payload)

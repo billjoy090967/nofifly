@@ -19,7 +19,7 @@ class Coupons extends React.Component {
   render() {
     return (
       <div>
-        <MenuAppBar title="Your Coupons" search />
+        <MenuAppBar title="My Coupons" search />
         <Typography />
         <List style={{ padding: 0, marginBottom: 60 }}>
           {map(CouponItem, this.props.coupons)}

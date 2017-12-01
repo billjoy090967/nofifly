@@ -55,9 +55,9 @@ class CouponForm extends React.Component {
         />
         <TextField
           label="Expiration Date"
-          value={this.props.editCoupon.expiration}
+          value={this.props.editCoupon.expirationDate}
           onChange={e => {
-            this.props.onChange('icon', e.target.value)
+            this.props.onChange('expirationDate', e.target.value)
           }}
           margin="normal"
           required
@@ -67,7 +67,7 @@ class CouponForm extends React.Component {
           label="Description"
           value={this.props.editCoupon.description}
           onChange={e => {
-            this.props.onChange('icon', e.target.value)
+            this.props.onChange('description', e.target.value)
           }}
           margin="normal"
           required

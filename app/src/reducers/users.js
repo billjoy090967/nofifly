@@ -26,11 +26,9 @@ export const currentUser = (state = {}, action) => {
 }
 
 const newUserDefault = {
-  userId: '',
+  type: '',
   firstName: '',
   lastName: '',
-  emailAddress: '',
-  password: '',
   zipcode: ''
 }
 export const newUser = (state = newUserDefault, action) => {

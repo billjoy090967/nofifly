@@ -79,7 +79,7 @@ class ShowCoupon extends React.Component {
       }
     ]
 
-    if (path(['currentCategory', '_id'], this.props) === currentID) {
+    if (path(['currentCoupon', '_id'], this.props) === currentID) {
       return (
         <div>
           <MenuAppBar
@@ -143,8 +143,8 @@ const mapStateToProps = state => {
 const mapActionToProps = (dispatch, getState) => {
   return {
     getCoupon: id => dispatch(setCurrentCoupon(id)),
-    toggleConfirmDelete: () => dispatch({ type: CONFIRM_CATEGORY_DELETE }),
-    deleteCategory: (id, history) => dispatch(deleteCategory(id, history))
+    toggleConfirmDelete: () => dispatch({ type: CONFIRM_COUPON_DELETE }),
+    deleteCoupon: (id, history) => dispatch(deleteCoupon(id, history))
   }
 }
 

@@ -20,7 +20,7 @@ const styles = theme => ({
 })
 
 const userMenuItem = user => {
-  return <MenuItem value={user._id}>{user.lastname}</MenuItem>
+  return <MenuItem value={user._id}>{user.lastName}</MenuItem>
 }
 
 class EditUserForm extends React.Component {
@@ -37,14 +37,14 @@ class EditUserForm extends React.Component {
         }}
       >
         <FormControl className={classes.input} required>
-          <InputLabel htmlFor="userId">User</InputLabel>
+          <InputLabel htmlFor="_id">User</InputLabel>
           <Select
-            name="userId"
-            value={this.props.editUser.userId}
+            name="_id"
+            value={this.props.editUser._id}
             onChange={e => {
-              this.props.onChange('userId', e.target.value)
+              this.props.onChange('_id', e.target.value)
             }}
-            input={<Input id="userId" required />}
+            input={<Input id="_id" required />}
             autoWidth
             required
           >
@@ -78,30 +78,6 @@ class EditUserForm extends React.Component {
           required
         />
         <TextField
-          name="emailAddress"
-          label="Email Address"
-          value={this.props.editUser.emailAddress}
-          onChange={e => {
-            this.props.onChange('emailAddress', e.target.value)
-          }}
-          margin="normal"
-          className={classes.input}
-          required
-          multiline
-        />
-        <TextField
-          name="password"
-          label="password"
-          value={this.props.editUser.password}
-          onChange={e => {
-            this.props.onChange('password', e.target.value)
-          }}
-          margin="normal"
-          className={classes.input}
-          required
-          multiline
-        />
-        <TextField
           name="zipcode"
           label="Zip Code"
           value={this.props.editUser.zipcode}
@@ -131,4 +107,4 @@ EditUserForm.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(EditResourceForm)
+export default withStyles(styles)(EditUserForm)

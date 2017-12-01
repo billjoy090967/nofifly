@@ -27,7 +27,7 @@ const CouponItem = props => {
               <Icon>{props.icon ? props.icon : 'add_circle'}</Icon>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={props.name} secondary={props.shortDesc} />
+          <ListItemText primary={props.name} secondary={props.description} />
 
           <ListItemSecondaryAction>
             <IconButton aria-label="More">
