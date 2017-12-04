@@ -3,15 +3,16 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const {
+  createUser,
+  getUser,
+  updateUser,
+  getAllUsers,
+  deleteUser,
   createCoupon,
   getCoupon,
   updateCoupon,
   deleteCoupon,
-  findCoupon,
-  createUser,
-  getUser,
-  updateUser,
-  checkUserId
+  getAllCoupons
 } = require('./dal')
 const port = process.env.PORT || 5000
 const HTTPError = require('node-http-error')
@@ -31,7 +32,9 @@ const {
   path,
   split,
   trim,
-  last
+  last,
+  toLower,
+  equals
 } = require('ramda')
 const checkRequiredFields = require('./lib/check-required-fields')
 const cors = require('cors')
@@ -42,21 +45,14 @@ const postUserRequiredFieldCheck = checkRequiredFields([
   'email',
   'zipcode'
 ])
-const putUserRequiredFieldCheck = checkRequiredFields([
-  '_id',
-  '_rev'
-
-])
+const putUserRequiredFieldCheck = checkRequiredFields(['_id', '_rev'])
 const couponRequiredFieldCheck = checkRequiredFields([
   'category',
   'name',
   'expirationDate'
 ])
 
-const couponRequiredPutFieldCheck = checkRequiredFields([
-  '_id',
-  '_rev'
-])
+const couponRequiredPutFieldCheck = checkRequiredFields(['_id', '_rev'])
 
 app.use(cors({ credentials: true }))
 app.use(bodyParser.json())
@@ -102,6 +98,12 @@ app.get('/users/:id', (req, res, next) => {
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
 
+app.delete('/users/:id', (req, res, next) => {
+  deleteUser(path(['params', 'id'], req))
+    .then(result => res.status(200).send(result))
+    .catch(err => next(new HTTPError(err.status, err.message)))
+})
+
 app.put('/users/:id', (req, res, next) => {
   if (isEmpty(prop('body'), req)) {
     return next(
@@ -123,25 +125,36 @@ app.put('/users/:id', (req, res, next) => {
     .then(result => res.status(200).send(result))
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
-
-
 app.get('/users', (req, res, next) => {
-  let searchStr = compose(split(':'), pathOr('', ['query', 'filter']))(req)
-  const filter = pathOr(null, ['query', 'filter'])(req)
-  var options = {}
-  if (filter) {
-    options = {
-      include_docs: true,
-      startkey: 'user_' + last(searchStr),
-      endkey: 'user_' + last(searchStr) + '\ufff0'
-    }
-  } else {
-    options = {
-      include_docs: true,
-      startkey: 'user_',
-      endkey: 'user_\ufff0'
-    }
-  }
+  getAllUsers({
+    include_docs: true,
+    inclusive_end: true,
+    start_key: 'user_',
+    end_key: 'user_\ufff0'
+  })
+    .then(docs => {
+      res.status(200).send(docs)
+    })
+    .catch(err => next(new HTTPError(err.status, err.message)))
+})
+// app.get('/users', (req, res, next) => {
+//   let searchStr = compose(split(':'), pathOr('', ['query', 'filter']))(req)
+//   const filter = pathOr(null, ['query', 'filter'])(req)
+//   var options = {}
+//   if (filter) {
+//     options = {
+//       include_docs: true,
+//       startkey: 'user_' + last(searchStr),
+//       endkey: 'user_' + last(searchStr) + '\ufff0'
+//     }
+//   } else {
+//     options = {
+//       include_docs: true,
+//       startkey: 'user_',
+//       endkey: 'user_\ufff0'
+//     }
+//   }
+// })
 
 /// //////////////////
 /// //// coupons
@@ -172,14 +185,14 @@ app.post('/coupons', (req, res, next) => {
 
   createCoupon(body)
     .then(result => {
-      console.log('in then: ', result)
+      //console.log('in then: ', result)
       res.status(201).send(result)
     })
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
 
 app.get('/coupons/:id', (req, res, next) => {
-  getCategory(req.params.id)
+  getCoupon(req.params.id)
     .then(result => res.status(200).send(result))
     .catch(err => next(err => new HTTPError(err.status, err.message)))
 })
@@ -205,19 +218,10 @@ app.put('/coupons/:id', (req, res, next) => {
     .catch(err => next(err => new HTTPError(err.status, err.message)))
 })
 
-app.delete('/coupons/:id', async (req, res, next) => {
-  const coupons = await checkCouponId(req.params.id)
-  console.log(coupons)
-  if (coupons === 0) {
-    deleteCoupon(path(['params', 'id'], req))
-      .then(result => res.status(200).send(result))
-      .catch(err => next(new HTTPError(err.status, err.message)))
-  } else {
-    res.send({
-      ok: false,
-      message: `Coupon Deleted.`
-    })
-  }
+app.delete('/coupons/:id', (req, res, next) => {
+  deleteCoupon(path(['params', 'id'], req))
+    .then(result => res.status(200).send(result))
+    .catch(err => next(new HTTPError(err.status, err.message)))
 })
 
 app.get('/coupons', (req, res, next) => {
@@ -238,7 +242,7 @@ app.get('/coupons', (req, res, next) => {
 /// //////////////////
 
 app.use(function(err, req, res, next) {
-  console.log(req.method, ' ', req.path, ' ', 'error ', err)
+  //console.log(req.method, ' ', req.path, ' ', 'error ', err)
   res.status(err.status || 500).send(err)
 })
 
