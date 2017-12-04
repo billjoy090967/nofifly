@@ -15,12 +15,10 @@ const url = process.env.REACT_APP_BASE_URL
 export const setCoupons = async (dispatch, getState) => {
   const response = await fetch(`${url}/coupons`).then(res => res.json())
   dispatch({ type: SET_COUPONS, payload: response })
-
+}
 
 export const setCurrentCoupon = id => async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/${id}`).then(res =>
-    res.json()
-  )
+  const response = await fetch(`${url}/coupons/${id}`).then(res => res.json())
   dispatch({
     type: SET_CURRENT_COUPON,
     payload: assoc('confirmDelete', false, response)
@@ -36,7 +34,7 @@ export const deleteCoupon = id => async (dispatch, getState) => {
   }).then(res => res.json())
   console.log('response', response)
   if (!response.ok) {
-    dispatch({ type: CONFIRM_CATEGORY_DELETE })
+    dispatch({ type: CONFIRM_COUPON_DELETE })
     return
   }
   dispatch({
@@ -66,9 +64,7 @@ export const createCoupon = async (dispatch, getState) => {
 }
 
 export const setEditCoupon = id => async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/${id}`).then(res =>
-    res.json()
-  )
+  const response = await fetch(`${url}/coupons/${id}`).then(res => res.json())
   dispatch({ type: SET_EDIT_COUPON, payload: response })
   dispatch(isActive)
 }
@@ -96,8 +92,24 @@ export const isActive = async (dispatch, getState) => {
   const currentData = !isEmpty(getState().coupon.name)
     ? getState().coupon
     : getState().editCoupon
-  const { userID, type, category, name, description, deal, expirationDate } = currentData
-  if (isEmpty(userID) || isEmpty(type) || isEmpty(category) || isEmpty(name) || isEmpty(description) || isEmpty(deal) || isEmpty(expirationDate)) {
+  const {
+    userID,
+    type,
+    category,
+    name,
+    description,
+    deal,
+    expirationDate
+  } = currentData
+  if (
+    isEmpty(userID) ||
+    isEmpty(type) ||
+    isEmpty(category) ||
+    isEmpty(name) ||
+    isEmpty(description) ||
+    isEmpty(deal) ||
+    isEmpty(expirationDate)
+  ) {
     dispatch({ type: IS_ACTIVE, payload: true })
   } else {
     dispatch({ type: IS_ACTIVE, payload: false })

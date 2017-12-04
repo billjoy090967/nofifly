@@ -7,7 +7,7 @@ import {
   ONCHANGE_EDIT_USER_FORM
 } from '../constants'
 
-import { merge, not } from 'ramda'
+import { merge } from 'ramda'
 
 export const users = (state = [], action) => {
   switch (action.type) {
@@ -22,6 +22,8 @@ export const currentUser = (state = {}, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
       return action.payload
+    default:
+      return state
   }
 }
 

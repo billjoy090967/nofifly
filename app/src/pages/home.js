@@ -4,8 +4,6 @@ import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
 import { connect } from 'react-redux'
 
-const Home = () => {}
-
 class Home extends React.Component {
   componentDidMount() {
     this.props.toggleDrawer()

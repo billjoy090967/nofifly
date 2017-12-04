@@ -88,4 +88,4 @@ class CouponForm extends React.Component {
   }
 }
 
-export default withStyles(styles)(CategoryForm)
+export default withStyles(styles)(CouponForm)

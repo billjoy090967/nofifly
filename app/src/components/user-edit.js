@@ -8,7 +8,7 @@ import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
-import { assoc, isEmpty, map, reduce } from 'ramda'
+import { map } from 'ramda'
 
 const styles = theme => ({
   input: {
@@ -18,10 +18,6 @@ const styles = theme => ({
     marginBottom: 8
   }
 })
-
-const userMenuItem = user => {
-  return <MenuItem value={user._id}>{user.email}</MenuItem>
-}
 
 class EditUserForm extends React.Component {
   render() {
@@ -51,7 +47,7 @@ class EditUserForm extends React.Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {map(categoryMenuItem, this.props.categories)}
+            {map(MenuItem, this.props.coupons)}
           </Select>
         </FormControl>
         <TextField

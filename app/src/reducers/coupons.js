@@ -22,6 +22,8 @@ export const currentCoupon = (state = {}, action) => {
   switch (action.type) {
     case SET_CURRENT_COUPON:
       return action.payload
+    default:
+      return state
     case CONFIRM_COUPON_DELETE:
       return merge(state, {
         confirmDelete: not(state.confirmDelete)
@@ -38,7 +40,7 @@ const setDefaultCoupon = {
   expirationDate: '',
   description: ''
 }
-export const category = (state = setDefaultCoupon, action) => {
+export const coupon = (state = setDefaultCoupon, action) => {
   switch (action.type) {
     case UPDATE_NEW_COUPON_FORM:
       return merge(state, action.payload)

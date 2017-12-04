@@ -1,12 +1,11 @@
 import React from 'react'
-import { Button } from 'material-ui'
+import Button from 'material-ui/Button'
 import withRoot from '../components/withRoot'
 import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
 import { connect } from 'react-redux'
 import PaperSheet from '../components/paperSheet'
 import notifly from '../notifly.jpg'
-import banner from '../banner.png'
 import Favorite from 'material-ui-icons/Favorite'
 import Legal from 'material-ui-icons/Gavel'
 import { CardMedia } from 'material-ui/Card'
@@ -23,7 +22,7 @@ const aboutText = [
           margin: '0 auto',
           display: 'block'
         }}
-        image={banner}
+        image={notifly}
         title="Noti-fly"
       />
     ),
@@ -50,19 +49,25 @@ const About = props => {
       <MenuAppBar title="About" />
       <div className="container">
         <PaperSheet data={aboutText} />
+
         <Link to="/legal" style={{ textDecoration: 'none' }}>
-          <Button raised color="primary" style={{ marginTop: 16 }}>
-            <Favorite style={{ marginRight: 7, height: 16, width: 16 }} />
+          <Button
+            raised
+            color="primary"
+            style={{ marginTop: 16, marginLeft: 16 }}
+          >
+            <Legal style={{ marginRight: 7, height: 16, width: 16 }} />
             Legal
           </Button>
         </Link>
+
         <Link to="/home" style={{ textDecoration: 'none' }}>
           <Button
             raised
             color="primary"
             style={{ marginTop: 16, marginLeft: 16 }}
           >
-            <Home style={{ marginRight: 7, height: 16, width: 16 }} />
+            <Favorite style={{ marginRight: 7, height: 16, width: 16 }} />
             Home
           </Button>
         </Link>

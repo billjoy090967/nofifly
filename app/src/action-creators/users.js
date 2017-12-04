@@ -5,11 +5,9 @@ import {
   SET_EDIT_USER,
   UPDATE_NEW_USER_FORM,
   IS_ACTIVE,
-  ERROR,
   ONCHANGE_EDIT_USER_FORM
 } from '../constants'
-import { isEmpty, assoc } from 'ramda'
-import history from '../history'
+import { isEmpty } from 'ramda'
 const url = process.env.REACT_APP_BASE_URL
 
 export const setUsers = async (dispatch, getState) => {
