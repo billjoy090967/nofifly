@@ -50,6 +50,7 @@ class EditUserForm extends React.Component {
             {map(MenuItem, this.props.users)}
           </Select>
         </FormControl>
+
         <TextField
           firstName="firstName"
           label="First Name"

@@ -33,7 +33,7 @@ class CouponForm extends React.Component {
           className={classes.input}
         />
         <TextField
-          label="name"
+          label="Store Name"
           value={this.props.coupon.name}
           onChange={e => {
             this.props.onChange('name', e.target.value)

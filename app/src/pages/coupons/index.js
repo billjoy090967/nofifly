@@ -2,6 +2,7 @@ import React from 'react'
 import withRoot from '../../components/withRoot'
 import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
+import EnhancedTable from '../../components/enhanced-table'
 
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
@@ -22,7 +23,7 @@ class Coupons extends React.Component {
   render() {
     return (
       <div>
-        <MenuAppBar title="My Coupons" search />
+        <MenuAppBar title="My Coupons" account />
         <Typography />
         <List style={{ padding: 0, marginBottom: 60 }}>
           {map(CouponItem, this.props.coupons)}

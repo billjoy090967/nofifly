@@ -2,7 +2,7 @@ import React from 'react'
 import { Drawer } from 'material-ui'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
-import InboxIcon from 'material-ui-icons/Inbox'
+import AccountCircleIcon from 'material-ui-icons/AccountCircle'
 import HomeIcon from 'material-ui-icons/Home'
 import HelpIcon from 'material-ui-icons/Help'
 import ViewList from 'material-ui-icons/ViewList'
@@ -24,7 +24,7 @@ const sideList = (
       <Link to="/coupons/" className="router-link">
         <ListItem button>
           <ListItemIcon>
-            <InboxIcon />
+            <ViewList />
           </ListItemIcon>
           <ListItemText primary="My Coupons" />
         </ListItem>
@@ -52,7 +52,7 @@ const sideList = (
     <Link to="/login" className="router-link">
       <ListItem button>
         <ListItemIcon>
-          <ViewList />
+          <AccountCircleIcon />
         </ListItemIcon>
         <ListItemText primary="Login" />
       </ListItem>

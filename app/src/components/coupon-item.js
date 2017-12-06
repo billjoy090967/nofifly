@@ -22,18 +22,7 @@ const CouponItem = props => {
         className="link"
       >
         <ListItem button>
-          <ListItemAvatar>
-            <Avatar>
-              <Icon>{props.icon ? props.icon : 'add_circle'}</Icon>
-            </Avatar>
-          </ListItemAvatar>
           <ListItemText primary={props.name} secondary={props.description} />
-
-          <ListItemSecondaryAction>
-            <IconButton aria-label="More">
-              <EllipsisIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
         </ListItem>
       </Link>
       <Divider />

@@ -16,7 +16,6 @@ const aboutText = [
     text: (
       <CardMedia
         style={{
-          height: '20vh',
           maxHeight: '128px',
           maxWidth: '357px',
           margin: '0 auto',

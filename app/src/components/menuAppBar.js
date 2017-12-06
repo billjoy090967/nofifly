@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import GoBackIcon from 'material-ui-icons/KeyboardArrowLeft'
 import AccountCircleIcon from 'material-ui-icons/AccountCircle'
-
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { propOr, isNil } from 'ramda'
 
@@ -42,12 +42,15 @@ const MenuAppBar = props => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography type="title" color="inherit" className={classes.flex}>
             {props.title}
           </Typography>
-          <IconButton color="contrast" aria-label="Account">
-            <AccountCircleIcon />
-          </IconButton>
+          <Link to="/login/" className="router-link">
+            <IconButton color="contrast" aria-label="Account">
+              <AccountCircleIcon />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
