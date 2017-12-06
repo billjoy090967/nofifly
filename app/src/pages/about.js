@@ -22,8 +22,6 @@ const aboutText = [
           margin: '0 auto',
           display: 'block'
         }}
-        image={notifly}
-        title="Noti-fly"
       />
     ),
     style: 'paragraph',
@@ -61,7 +59,7 @@ const About = props => {
           </Button>
         </Link>
 
-        <Link to="/home" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <Button
             raised
             color="primary"

@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import GoBackIcon from 'material-ui-icons/KeyboardArrowLeft'
-import SearchIcon from 'material-ui-icons/Search'
+import AccountCircleIcon from 'material-ui-icons/AccountCircle'
 
 import { connect } from 'react-redux'
 import { propOr, isNil } from 'ramda'
@@ -30,7 +30,7 @@ const styles = theme => ({
 
 const MenuAppBar = props => {
   const { classes } = props
-  const secondaryMenu = propOr(null, 'secondaryMenu', props)
+
   return (
     <div id="menu-container" className={classes.root}>
       <AppBar position="fixed">
@@ -39,38 +39,57 @@ const MenuAppBar = props => {
             className={classes.firstButton}
             color="contrast"
             aria-label="Menu"
-            onClick={
-              props.goBack
-                ? typeof props.goBack === 'string'
-                  ? props.lastPage(props.history, props.goBack)
-                  : props.lastPage(props.history)
-                : props.toggleDrawer
-            }
           >
-            {props.goBack ? (
-              <GoBackIcon style={{ fontSize: 32, marginTop: 0 }} />
-            ) : (
-              <MenuIcon />
-            )}
+            <MenuIcon />
           </IconButton>
           <Typography type="title" color="inherit" className={classes.flex}>
             {props.title}
           </Typography>
-          <IconButton
-            className={isNil(secondaryMenu) ? classes.lastButton : ''}
-            color="contrast"
-            aria-label="Search"
-            onClick={props.toggleDrawer}
-          >
-            <SearchIcon />
+          <IconButton color="contrast" aria-label="Account">
+            <AccountCircleIcon />
           </IconButton>
-
-          {secondaryMenu}
         </Toolbar>
       </AppBar>
     </div>
   )
 }
+
+/*
+<AppBar position="fixed">
+  <Toolbar>
+    <IconButton
+      className={classes.firstButton}
+      color="contrast"
+      aria-label="Menu"
+      onClick={
+        props.goBack
+          ? typeof props.goBack === 'string'
+            ? props.lastPage(props.history, props.goBack)
+            : props.lastPage(props.history)
+          : props.toggleDrawer
+      }
+    >
+      {props.goBack ? (
+        <GoBackIcon style={{ fontSize: 32, marginTop: 0 }} />
+      ) : (
+        <MenuIcon />
+      )}
+    </IconButton>
+    <Typography type="title" color="inherit" className={classes.flex}>
+      {props.title}
+    </Typography>
+    <IconButton
+      className={isNil(secondaryMenu) ? classes.lastButton : ''}
+      color="contrast"
+      aria-label="Search"
+      onClick={props.toggleDrawer}
+    >
+      <SearchIcon />
+    </IconButton>
+
+    {secondaryMenu}
+  </Toolbar>
+</AppBar>
 
 const mapStateToProps = state => ({})
 const mapActionsToProps = (dispatch, getState) => ({
@@ -86,5 +105,7 @@ const mapActionsToProps = (dispatch, getState) => ({
 })
 
 const connector = connect(mapStateToProps, mapActionsToProps)
-
 export default connector(withStyles(styles)(MenuAppBar))
+*/
+
+export default withStyles(styles)(MenuAppBar)

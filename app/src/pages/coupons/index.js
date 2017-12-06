@@ -29,7 +29,12 @@ class Coupons extends React.Component {
         </List>
         <Link to="/coupons/new">
           <Button fab color="primary" aria-label="add" className="fab-button">
-            <AddIcon />
+            <img
+              alt="AddGraphic"
+              src={'add-a-coupon'}
+              width="200"
+              height="auto"
+            />
           </Button>
         </Link>
       </div>

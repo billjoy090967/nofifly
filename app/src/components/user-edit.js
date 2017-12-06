@@ -47,7 +47,7 @@ class EditUserForm extends React.Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {map(MenuItem, this.props.coupons)}
+            {map(MenuItem, this.props.users)}
           </Select>
         </FormControl>
         <TextField
@@ -65,7 +65,7 @@ class EditUserForm extends React.Component {
         <TextField
           lastName="lastName"
           label="Last Name"
-          value={this.props.editUser.name}
+          value={this.props.editUser.lastName}
           onChange={e => {
             this.props.onChange('lastName', e.target.value)
           }}

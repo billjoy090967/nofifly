@@ -66,7 +66,7 @@ const Legal = props => {
             About
           </Button>
         </Link>
-        <Link to="/home" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <Button
             raised
             color="primary"

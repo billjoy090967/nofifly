@@ -16,6 +16,7 @@ const styles = theme => ({
 class CouponForm extends React.Component {
   render() {
     const { classes } = this.props
+
     return (
       <form
         style={{ marginTop: 8 }}
@@ -44,7 +45,7 @@ class CouponForm extends React.Component {
         />
         <TextField
           label="Deal"
-          value={this.props.editCategory.deal}
+          value={this.props.editCoupon.deal}
           onChange={e => {
             this.props.onChange('deal', e.target.value)
           }}
@@ -77,7 +78,7 @@ class CouponForm extends React.Component {
           fab
           disabled={this.props.isActive}
           className="fab-button"
-          color="primary"
+          color="secondary"
           aria-label="add"
           type="submit"
         >

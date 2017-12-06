@@ -161,6 +161,8 @@ app.get('/users', (req, res, next) => {
 /// //////////////////
 
 app.post('/coupons', (req, res, next) => {
+  // TODO: remove this when auth is hooked up
+  req.body.email = 'foo@bar.com'
   if (isEmpty(prop('body'), req)) {
     return next(
       new HTTPError(

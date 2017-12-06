@@ -21,20 +21,12 @@ const sideList = (
           <ListItemText primary="Home" />
         </ListItem>
       </Link>
-      <Link to="/myCoupons" className="router-link">
+      <Link to="/coupons/" className="router-link">
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="My Coupons" />
-        </ListItem>
-      </Link>
-      <Link to="/login" className="router-link">
-        <ListItem button>
-          <ListItemIcon>
-            <ViewList />
-          </ListItemIcon>
-          <ListItemText primary="Login" />
         </ListItem>
       </Link>
     </List>
@@ -57,6 +49,14 @@ const sideList = (
         </ListItem>
       </Link>
     </List>
+    <Link to="/login" className="router-link">
+      <ListItem button>
+        <ListItemIcon>
+          <ViewList />
+        </ListItemIcon>
+        <ListItemText primary="Login" />
+      </ListItem>
+    </Link>
   </div>
 )
 
