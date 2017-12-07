@@ -6,9 +6,9 @@ import AccountCircleIcon from 'material-ui-icons/AccountCircle'
 import HomeIcon from 'material-ui-icons/Home'
 import HelpIcon from 'material-ui-icons/Help'
 import ViewList from 'material-ui-icons/ViewList'
+import GavelIcon from 'material-ui-icons/Gavel'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import GavelIcon from 'material-ui-icons/Gavel'
 
 const sideList = (
   <div>

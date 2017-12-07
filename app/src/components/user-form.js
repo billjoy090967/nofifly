@@ -1,14 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Input, { InputLabel } from 'material-ui/Input'
-import { MenuItem } from 'material-ui/Menu'
-import { FormControl } from 'material-ui/Form'
-import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
-import { map } from 'ramda'
 
 const styles = theme => ({
   input: {
@@ -19,89 +13,67 @@ const styles = theme => ({
   }
 })
 
-const couponMenuItem = coupon => {
-  return <MenuItem value={coupon.name}>{coupon.name}</MenuItem>
-}
-
 class UserForm extends React.Component {
   render() {
     const { classes } = this.props
-
     return (
       <form
         style={{ marginTop: 8 }}
         autoComplete="off"
-        onSubmit={e => {
-          e.preventDefault()
-          this.props.onSubmit()
-        }}
+        onSubmit={this.props.createUser}
       >
-        <FormControl className={classes.input} required>
-          <InputLabel htmlFor="couponId">Coupon</InputLabel>
-          <Select
-            name="couponId"
-            value={this.props.newUser.couponId}
-            onChange={e => {
-              this.props.onChange('couponId', e.target.value)
-            }}
-            input={<Input id="couponId" required />}
-            autoWidth
-            required
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {map(couponMenuItem, this.props.coupons)}
-          </Select>
-        </FormControl>
         <TextField
-          name="firstName"
           label="First Name"
-          value={this.props.newUser.firstName}
+          value={this.props.user.firstName}
           onChange={e => {
             this.props.onChange('firstName', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
-          multiline
+          className={classes.input}
         />
         <TextField
-          name="lastName"
           label="Last Name"
-          value={this.props.newUser.lastName}
+          value={this.props.user.lastName}
           onChange={e => {
             this.props.onChange('lastName', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
+          className={classes.input}
+          multiline
         />
         <TextField
-          name="email"
-          label="E-Mail Address"
-          value={this.props.newUser.email}
+          label="E-mail Address"
+          value={this.props.user.email}
           onChange={e => {
             this.props.onChange('email', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
+          className={classes.input}
           multiline
         />
         <TextField
-          name="zipcode"
           label="Zip Code"
-          value={this.props.newUser.zipcode}
+          value={this.props.user.zipcode}
           onChange={e => {
-            this.props.onChange('zipcode', e.target.value)
+            this.props.onChange('deal', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
-          multiline
+          className={classes.input}
         />
-
+        <TextField
+          label="Password"
+          value={this.props.user.password}
+          onChange={e => {
+            this.props.onChange('password', e.target.value)
+          }}
+          margin="normal"
+          required
+          className={classes.input}
+        />
         <Button
           fab
           color="primary"
@@ -115,10 +87,6 @@ class UserForm extends React.Component {
       </form>
     )
   }
-}
-
-UserForm.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(UserForm)

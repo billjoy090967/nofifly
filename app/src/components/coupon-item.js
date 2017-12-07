@@ -1,17 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  ListItem,
-  ListItemAvatar,
-  ListItemSecondaryAction,
-  ListItemText
-} from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import IconButton from 'material-ui/IconButton'
-
-import EllipsisIcon from 'material-ui-icons/MoreVert'
+import { ListItem, ListItemText } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
-import Icon from 'material-ui/Icon'
 
 const CouponItem = props => {
   return (

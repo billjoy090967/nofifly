@@ -5,12 +5,12 @@ import MenuAppBar from '../../components/menuAppBar'
 import EditUserForm from '../../components/user-edit'
 import { connect } from 'react-redux'
 import {
-  addEditUser,
+  updateUser,
   setEditUser,
   isActive,
   onChangeEditUserForm
 } from '../../action-creators/users'
-import { setCoupons } from '../../action-creators/coupons'
+import { setUsers } from '../../action-creators/users'
 
 // props.users === []
 class EditUser extends React.Component {
@@ -54,9 +54,9 @@ const mapActionsToProps = dispatch => {
       dispatch(isActive)
     },
     onSubmit: (data, history) => e => {
-      dispatch(addEditUser(data, history))
+      dispatch(updateUser(data, history))
     },
-    onMount: () => dispatch(setCoupons),
+    onMount: () => dispatch(setUsers),
     setEditUser: id => dispatch(setEditUser(id)),
     isSubmitActive: () => dispatch(isActive)
   }

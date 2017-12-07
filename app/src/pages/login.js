@@ -1,63 +1,47 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import MenuItem from 'material-ui/Menu/MenuItem'
-import TextField from 'material-ui/TextField'
+import withRoot from '../components/withRoot'
+import withDrawer from '../components/withDrawer'
+import MenuAppBar from '../components/menuAppBar'
+import UserLogin from '../components/user-login'
+import { connect } from 'react-redux'
+import {
+  updateNewUserForm,
+  addNewUser,
+  isActive
+} from '../action-creators/users'
+import { UPDATE_NEW_USER_FORM } from '../constants'
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  },
-  menu: {
-    width: 200
+// props.users === []
+class NewUser extends React.Component {
+  componentDidMount() {
+    this.props.isSubmitActive()
   }
-})
-
-class TextFields extends React.Component {
-  state = {
-    name: ''
-  }
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    })
-  }
-
   render() {
-    const { classes } = this.props
-
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          id="name"
-          label="Name"
-          className={classes.textField}
-          value={this.state.name}
-          onChange={this.handleChange('name')}
-          margin="normal"
-        />
-        <TextField
-          id="password"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-        />
-      </form>
+      <div>
+        <MenuAppBar title="Login Now!" search goBack {...this.props} />
+        <UserLogin {...this.props} />
+      </div>
     )
   }
 }
 
-TextFields.propTypes = {
-  classes: PropTypes.object.isRequired
+const mapStateToProps = state => state
+
+const mapActionsToProps = dispatch => {
+  return {
+    onChange: (field, value) => {
+      dispatch({ type: UPDATE_NEW_USER_FORM, payload: { [field]: value } })
+      dispatch(isActive)
+    },
+    addNewUser: e => {
+      e.preventDefault()
+      dispatch(addNewUser)
+    },
+    isSubmitActive: () => dispatch(isActive)
+  }
 }
 
-export default withStyles(styles)(TextFields)
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+export default withRoot(withDrawer(connector(NewUser)))

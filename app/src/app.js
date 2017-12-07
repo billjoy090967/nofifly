@@ -12,7 +12,6 @@ import EditUser from './pages/users/edit'
 import NewUser from './pages/users/new'
 
 import history from './history'
-import ScrollToTop from './ScrollToTop'
 const App = props => {
   return (
     <Router history={history}>
