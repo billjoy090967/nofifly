@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
@@ -20,58 +21,66 @@ class UserForm extends React.Component {
       <form
         style={{ marginTop: 8 }}
         autoComplete="off"
-        onSubmit={this.props.createUser}
+        onSubmit={e => {
+          e.preventDefault()
+          this.props.onSubmit()
+        }}
       >
         <TextField
+          name="firstName"
           label="First Name"
-          value={this.props.user.firstName}
+          value={this.props.newUser.firstName}
           onChange={e => {
             this.props.onChange('firstName', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
+          multiline
         />
         <TextField
+          name="lastName"
           label="Last Name"
-          value={this.props.user.lastName}
+          value={this.props.newUser.lastName}
           onChange={e => {
             this.props.onChange('lastName', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
-          multiline
+          required
         />
         <TextField
+          name="email"
           label="E-mail Address"
-          value={this.props.user.email}
+          value={this.props.newUser.email}
           onChange={e => {
             this.props.onChange('email', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
           multiline
         />
         <TextField
+          name="zipcode"
           label="Zip Code"
-          value={this.props.user.zipcode}
+          value={this.props.newUser.zipcode}
           onChange={e => {
-            this.props.onChange('deal', e.target.value)
+            this.props.onChange('zipcode', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
+          multiline
         />
         <TextField
+          name="password"
           label="Password"
-          value={this.props.user.password}
+          value={this.props.newUser.password}
           onChange={e => {
             this.props.onChange('password', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
         />
         <Button
@@ -88,5 +97,7 @@ class UserForm extends React.Component {
     )
   }
 }
-
+UserForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
 export default withStyles(styles)(UserForm)

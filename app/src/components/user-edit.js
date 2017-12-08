@@ -1,14 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Input, { InputLabel } from 'material-ui/Input'
-import { MenuItem } from 'material-ui/Menu'
-import { FormControl } from 'material-ui/Form'
-import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
-import { map } from 'ramda'
 
 const styles = theme => ({
   input: {
@@ -24,94 +18,62 @@ class EditUserForm extends React.Component {
     const { classes } = this.props
 
     return (
-      <form
-        style={{ marginTop: 8 }}
-        autoComplete="off"
-        onSubmit={e => {
-          e.preventDefault()
-          this.props.onSubmit()
-        }}
-      >
-        <FormControl className={classes.input} required>
-          <InputLabel htmlFor="_id">User</InputLabel>
-          <Select
-            name="_id"
-            value={this.props.editUser._id}
-            onChange={e => {
-              this.props.onChange('_id', e.target.value)
-            }}
-            input={<Input id="_id" required />}
-            autoWidth
-            required
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {map(MenuItem, this.props.users)}
-          </Select>
-        </FormControl>
-
+      <form style={{ marginTop: 8 }} onSubmit={this.props.editUser}>
         <TextField
-          firstName="firstName"
           label="First Name"
           value={this.props.editUser.firstName}
           onChange={e => {
             this.props.onChange('firstName', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
-          multiline
+          className={classes.input}
         />
         <TextField
-          lastName="lastName"
           label="Last Name"
           value={this.props.editUser.lastName}
           onChange={e => {
             this.props.onChange('lastName', e.target.value)
           }}
           margin="normal"
-          className={classes.input}
           required
+          className={classes.input}
+          multiline
         />
         <TextField
-          name="email"
-          label="Email Address"
+          label="E-mail Address"
           value={this.props.editUser.email}
           onChange={e => {
             this.props.onChange('email', e.target.value)
           }}
           margin="normal"
+          required
           className={classes.input}
+          multiline
         />
         <TextField
-          name="zipcode"
           label="Zip Code"
           value={this.props.editUser.zipcode}
           onChange={e => {
             this.props.onChange('zipcode', e.target.value)
           }}
           margin="normal"
+          required
           className={classes.input}
         />
-
         <Button
           fab
-          color="primary"
-          type="submit"
-          aria-label="edit"
-          className="fab-button"
           disabled={this.props.isActive}
+          className="fab-button"
+          color="secondary"
+          aria-label="add"
+          type="submit"
         >
           <SaveIcon />
         </Button>
       </form>
     )
   }
-}
-
-EditUserForm.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(EditUserForm)

@@ -1,49 +1,81 @@
 import React from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import TextField from 'material-ui/TextField'
+import IconButton from 'material-ui/IconButton'
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import Visibility from 'material-ui-icons/Visibility'
+import VisibilityOff from 'material-ui-icons/VisibilityOff'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
 
 const styles = theme => ({
-  input: {
-    width: '50%',
-    marginLeft: 16,
-    marginTop: 16,
-    marginBottom: 8
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  formControl: {
+    margin: theme.spacing.unit
+  },
+  withoutLabel: {
+    marginTop: theme.spacing.unit * 3
   }
 })
 
 class UserLogin extends React.Component {
+  state = {
+    email: '',
+    password: '',
+    showPassword: false
+  }
+
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value })
+  }
+
+  handleMouseDownPassword = event => {
+    event.preventDefault()
+  }
+
+  handleClickShowPasssword = () => {
+    this.setState({ showPassword: !this.state.showPassword })
+  }
+
   render() {
     const { classes } = this.props
-    return (
-      <form
-        style={{ marginTop: 8 }}
-        autoComplete="off"
-        onSubmit={this.props.user}
-      >
-        <TextField
-          label="Email Address"
-          value={this.props.email}
-          onChange={e => {
-            this.props.onChange('email', e.target.value)
-          }}
-          margin="normal"
-          required
-          className={classes.input}
-        />
-        <TextField
-          label="Password"
-          value={this.props.password}
-          onChange={e => {
-            this.props.onChange('name', e.target.value)
-          }}
-          margin="normal"
-          required
-          className={classes.input}
-          multiline
-        />
 
+    return (
+      <div className={classes.root}>
+        <FormControl fullWidth className={classes.formControl}>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <Input
+            id="email"
+            value={this.state.email}
+            onChange={this.handleChange('email')}
+            startAdornment={<InputAdornment position="start" />}
+          />
+        </FormControl>
+
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            id="password"
+            type={this.state.showPassword ? 'text' : 'password'}
+            value={this.state.password}
+            onChange={this.handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={this.handleClickShowPasssword}
+                  onMouseDown={this.handleMouseDownPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
         <Button
           fab
           color="primary"
@@ -54,9 +86,13 @@ class UserLogin extends React.Component {
         >
           <SaveIcon />
         </Button>
-      </form>
+      </div>
     )
   }
+}
+
+UserLogin.propTypes = {
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(UserLogin)

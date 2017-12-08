@@ -10,15 +10,14 @@ import {
   ONCHANGE_EDIT_USER_FORM,
   ADD_NEW_USER
 } from '../constants'
-import history from '../history'
 import { isEmpty, assoc } from 'ramda'
+import history from '../history'
 const url = process.env.REACT_APP_BASE_URL
 
 export const setUsers = async (dispatch, getState) => {
   const response = await fetch(`${url}/users`).then(res => res.json())
   dispatch({ type: SET_USERS, payload: response })
 }
-
 export const setCurrentUser = id => async (dispatch, getState) => {
   const response = await fetch(`${url}/users/${id}`).then(res => res.json())
   dispatch({
@@ -35,23 +34,26 @@ export const onChangeEditUserForm = (field, value) => (dispatch, getState) => {
   dispatch({ type: ONCHANGE_EDIT_USER_FORM, payload: { [field]: value } })
 }
 
-export const addNewUser = async (dispatch, getState) => {
-  const user = getState().user
-  const response = await fetch(`${url}/users`, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify(user)
+export const addNewUser = (data, history) => async (dispatch, getState) => {
+  const headers = {
+    'Content-Type': 'application/json'
+  }
+  const method = 'POST'
+  const body = JSON.stringify(data)
+
+  const result = await fetch(`${url}/users`, {
+    headers,
+    method,
+    body
   }).then(res => res.json())
 
-  if (!response.ok) {
-    dispatch({ type: ERROR, payload: 'Could not add user' })
-    return
+  if (result.ok) {
+    dispatch(setUsers)
+    // dispatch({ type: IS_ACTIVE, payload: true })
+    history.push('/users')
+  } else {
+    // handle error
   }
-  dispatch(setUsers)
-
-  history.push('/users')
 }
 
 export const setEditUser = id => async (dispatch, getState) => {
@@ -60,8 +62,10 @@ export const setEditUser = id => async (dispatch, getState) => {
   dispatch(isActive)
 }
 
-export const updateUser = data => async (dispatch, getState) => {
-  const headers = { 'Content-Type': 'application/json' }
+export const addEditUser = (data, history) => async (dispatch, getState) => {
+  const headers = {
+    'Content-Type': 'application/json'
+  }
   const method = 'PUT'
   const body = JSON.stringify(data)
 
@@ -80,8 +84,8 @@ export const updateUser = data => async (dispatch, getState) => {
 }
 
 export const isActive = async (dispatch, getState) => {
-  const currentData = !isEmpty(getState()user.email)
-    ? getState().user
+  const currentData = !isEmpty(getState().newUser.email)
+    ? getState().newUser
     : getState().editUser
   const { type, firstName, lastName, email, zipcode } = currentData
 

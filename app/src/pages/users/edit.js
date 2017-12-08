@@ -5,12 +5,12 @@ import MenuAppBar from '../../components/menuAppBar'
 import EditUserForm from '../../components/user-edit'
 import { connect } from 'react-redux'
 import {
-  updateUser,
+  addEditUser,
   setEditUser,
   isActive,
-  onChangeEditUserForm
+  onChangeEditUserForm,
+  setUsers
 } from '../../action-creators/users'
-import { setUsers } from '../../action-creators/users'
 
 // props.users === []
 class EditUser extends React.Component {
@@ -23,7 +23,12 @@ class EditUser extends React.Component {
   render() {
     return (
       <div>
-        <MenuAppBar title="Edit User" search goBack {...this.props} />
+        <MenuAppBar
+          title="Edit My Account Info"
+          search
+          goBack
+          {...this.props}
+        />
         <EditUserForm
           onChange={this.props.onChange}
           editUser={this.props.editUser}
@@ -54,7 +59,7 @@ const mapActionsToProps = dispatch => {
       dispatch(isActive)
     },
     onSubmit: (data, history) => e => {
-      dispatch(updateUser(data, history))
+      dispatch(addEditUser(data, history))
     },
     onMount: () => dispatch(setUsers),
     setEditUser: id => dispatch(setEditUser(id)),

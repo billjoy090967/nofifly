@@ -15,7 +15,7 @@ class NewUser extends React.Component {
   render() {
     return (
       <div>
-        <MenuAppBar title="Create a Login!" search goBack {...this.props} />
+        <MenuAppBar title="Create an Account!" search goBack {...this.props} />
         <UserForm {...this.props} />
       </div>
     )

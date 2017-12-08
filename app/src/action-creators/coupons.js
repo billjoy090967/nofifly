@@ -3,9 +3,9 @@ import {
   SET_COUPONS,
   SET_CURRENT_COUPON,
   SET_EDIT_COUPON,
+  ERROR,
   IS_ACTIVE,
-  CONFIRM_COUPON_DELETE,
-  ERROR
+  CONFIRM_COUPON_DELETE
 } from '../constants'
 import history from '../history'
 import { isEmpty, assoc } from 'ramda'
