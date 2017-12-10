@@ -10,7 +10,7 @@ import List from 'material-ui/List'
 
 import { connect } from 'react-redux'
 import { map } from 'ramda'
-import CouponForm from '../../components/coupon-edit'
+import CouponForm from '../../components/coupon-form'
 import { Link } from 'react-router-dom'
 import { setCoupons } from '../../action-creators/coupons'
 

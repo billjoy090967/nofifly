@@ -199,8 +199,8 @@ class EnhancedTable extends React.Component {
         createData('Entertainment', 'Wild Blue Ropes', '$20.00', '2018-07-31'),
         createData('Store', 'Kohls', '$25.00', '2018-11-01'),
         createData('Restaurant', 'Perkins', '$1.00', '2018-12-01'),
-        createData('Grocery', 'Publix', '$0.50', '2017-12-20'),
-        createData('Grocery', 'Harris Teter', '$2.50', '2017-12-25')
+        createData('Grocery', 'Publix', '$0.50', '2017-12-25'),
+        createData('Grocery', 'Harris Teeter', '$2.50', '2018-04-15')
       ].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
       page: 0,
       rowsPerPage: 10
