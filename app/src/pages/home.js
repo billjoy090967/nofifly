@@ -19,6 +19,7 @@ class Home extends React.Component {
         <Link to="/login" style={{ textDecoration: 'none' }}>
           <img
             src={addACoupon}
+            alt="loading"
             style={{
               padding: '70px',
               display: 'block',
@@ -31,6 +32,7 @@ class Home extends React.Component {
         </Link>
         <img
           src={notifly}
+          alt="loading"
           style={{
             display: 'block',
             margin: '0 auto',

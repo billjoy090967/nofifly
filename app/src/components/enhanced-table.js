@@ -18,11 +18,12 @@ import Table, {
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
-import Checkbox from 'material-ui/Checkbox'
 import IconButton from 'material-ui/IconButton'
 import Tooltip from 'material-ui/Tooltip'
 import DeleteIcon from 'material-ui-icons/Delete'
 import FilterListIcon from 'material-ui-icons/FilterList'
+import history from '../history'
+import { connect } from 'react-redux'
 
 let counter = 0
 function createData(category, name, deal, expirationDate) {
@@ -46,7 +47,6 @@ class EnhancedTableHead extends React.Component {
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired
@@ -57,14 +57,7 @@ class EnhancedTableHead extends React.Component {
   }
 
   render() {
-    const {
-      onSelectAllClick,
-      order,
-      orderBy,
-      numSelected,
-      rowCount
-    } = this.props
-
+    const { order, orderBy } = this.props
     return (
       <TableHead>
         <TableRow>
@@ -193,10 +186,10 @@ class EnhancedTable extends React.Component {
         createData('Store', 'Kohls', '$25.00', '2018-11-01'),
         createData('Restaurant', 'Perkins', '$1.00', '2018-12-01'),
         createData('Grocery', 'Publix', '$0.50', '2017-12-20'),
-        createData('Grocery', 'Harris Teter', '$2.50', '2017-12-25')
+        createData('Grocery', 'Harris Teeter', '$2.50', '2017-12-25')
       ].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
       page: 0,
-      rowsPerPage: 7
+      rowsPerPage: 5
     }
   }
 
@@ -214,14 +207,6 @@ class EnhancedTable extends React.Component {
         : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1))
 
     this.setState({ data, order, orderBy })
-  }
-
-  handleSelectAllClick = (event, checked) => {
-    if (checked) {
-      this.setState({ selected: this.state.data.map(n => n.id) })
-      return
-    }
-    this.setState({ selected: [] })
   }
 
   handleKeyDown = (event, id) => {
@@ -266,7 +251,7 @@ class EnhancedTable extends React.Component {
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage)
-
+    console.log('props', this.props)
     return (
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -276,7 +261,6 @@ class EnhancedTable extends React.Component {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
             />
@@ -284,17 +268,15 @@ class EnhancedTable extends React.Component {
               {data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.id)
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
-                      onKeyDown={event => this.handleKeyDown(event, n.id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
+                      onClick={e =>
+                        history.push(
+                          '/coupons/coupon_billjoy090967@gmail.com_harris_teeter_2018-04-15/edit'
+                        )}
                       tabIndex={-1}
                       key={n.id}
-                      selected={isSelected}
                     >
                       <TableCell numeric>{n.category}</TableCell>
                       <TableCell numeric>{n.name}</TableCell>
@@ -331,4 +313,16 @@ EnhancedTable.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(EnhancedTable)
+const mapStateToProps = state => {
+  return { state: state }
+}
+
+const mapActionsToProps = dispatch => {
+  return {
+    dispatch
+  }
+}
+
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+export default connector(withStyles(styles)(EnhancedTable))

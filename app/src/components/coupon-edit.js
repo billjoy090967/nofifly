@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   input: {
@@ -74,16 +75,18 @@ class CouponForm extends React.Component {
           required
           className={classes.input}
         />
-        <Button
-          fab
-          disabled={this.props.isActive}
-          className="fab-button"
-          color="secondary"
-          aria-label="add"
-          type="submit"
-        >
-          <SaveIcon />
-        </Button>
+        <Link to="/coupons">
+          <Button
+            fab
+            disabled={this.props.isActive}
+            className="fab-button"
+            color="secondary"
+            aria-label="add"
+            type="submit"
+          >
+            <SaveIcon />
+          </Button>
+        </Link>
       </form>
     )
   }

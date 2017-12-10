@@ -1,8 +1,8 @@
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
 import addACoupon from '../media/images/add-a-coupon.jpg'
+import history from '../history'
 
 const styles = theme => ({
   input: {
@@ -21,7 +21,9 @@ class CouponForm extends React.Component {
         style={{ marginTop: 8 }}
         autoComplete="off"
         onSubmit={e => {
-          this.props.createCoupon(e)
+          console.log('e', e),
+            this.props.createCoupon(e),
+            history.push('/coupons')
         }}
       >
         <TextField
@@ -78,11 +80,20 @@ class CouponForm extends React.Component {
         />
         <button
           type="submit"
-          style={{ border: 0, background: 'none' }}
+          style={{
+            border: 0,
+            background: 'none',
+            position: 'fixed',
+            left: '10px'
+          }}
           className="fab-button"
           // disabled={this.props.isActive}
         >
-          <img src={addACoupon} style={{ width: 'auto', height: '70px' }} />
+          <img
+            alt="loading"
+            src={addACoupon}
+            style={{ width: 'auto', height: '70px' }}
+          />
         </button>
       </form>
     )

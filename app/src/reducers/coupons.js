@@ -52,6 +52,7 @@ export const coupon = (state = setDefaultCoupon, action) => {
 }
 
 export const editCoupon = (state = setDefaultCoupon, action) => {
+  console.log('action', action.payload)
   switch (action.type) {
     case SET_EDIT_COUPON:
       return action.payload

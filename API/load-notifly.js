@@ -28,7 +28,7 @@ db.bulkDocs([
     _id: 'coupon_billjoy090967@gmail.com_jiffy_lube_2017-12-31',
     userId: 'user_billjoy090967@gmail.com',
     type: 'coupon',
-    category: 'Auto Repair',
+    category: 'Service',
     name: 'Jiffy Lube',
     description: 'standard oil change for $19.99',
     deal: '$19.99',
@@ -41,7 +41,7 @@ db.bulkDocs([
     category: 'Entertainment',
     name: 'Wild Blue Ropes',
     description: 'two hours of ropes for $20',
-    value: '$20.00',
+    deal: '$20.00',
     expirationDate: '2018-07-31'
   },
   {
@@ -60,7 +60,7 @@ db.bulkDocs([
     category: 'Restaurant',
     name: 'Perkins',
     description: '$1 slice of pie',
-    value: '$1.00',
+    deal: '$1.00',
     expirationDate: '2018-12-01'
   },
   {
@@ -70,7 +70,43 @@ db.bulkDocs([
     category: 'Store',
     name: "Kohl's",
     description: "$25 in Kohl's Cash",
-    value: '$25.00',
+    deal: '$25.00',
     expirationDate: '2018-11-01'
+  },
+  {
+    _id: 'coupon_billjoy090967@gmail.com_harris_teeter_2018-04-15',
+    userId: 'user_billjoy090967@gmail.com',
+    type: 'coupon',
+    category: 'Grocery',
+    name: 'Harris Teeter',
+    description: '$2.50 of any 1 pound of deli meat',
+    deal: '$2.50',
+    expirationDate: '2018-04-15'
+  },
+  {
+    _id: 'coupon_billjoy090967@gmail.com_publix_2017_12_25',
+    userId: 'user_billjoy090967@gmail.com',
+    type: 'coupon',
+    category: 'Grocery',
+    name: 'Publix ',
+    description: "$.50 of any Campbell's Chunky Soup",
+    deal: '$1.50',
+    expirationDate: '2018-12-25'
+  },
+  {
+    _id: 'user_rbickel1945@att.net',
+    type: 'user',
+    email: 'rbickel1945@att.net',
+    firstName: 'Ruth',
+    lastName: 'Bickel',
+    zipcode: '54313'
+  },
+  {
+    _id: 'user_mnijoy@gmail.com',
+    type: 'user',
+    email: 'mnijoy@gmail.com',
+    firstName: 'Irene',
+    lastName: 'Joy',
+    zipcode: '20855'
   }
 ])

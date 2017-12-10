@@ -4,14 +4,13 @@ import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
 
 import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
 import List from 'material-ui/List'
 
 import { connect } from 'react-redux'
-import { map } from 'ramda'
 import EnhancedTable from '../../components/enhanced-table'
-import { Link } from 'react-router-dom'
 import { setCoupons } from '../../action-creators/coupons'
+import addCoupon from '../../media/images/add-a-coupon.jpg'
+import history from '../../history'
 
 class Coupons extends React.Component {
   componentDidMount() {
@@ -19,7 +18,6 @@ class Coupons extends React.Component {
   }
 
   render() {
-    const allCoupons = this.props.coupons
     // ramda filter to filter the coupons
     // currently logged in user should be available as this.props.currentUser or whatever.
     return (
@@ -27,18 +25,16 @@ class Coupons extends React.Component {
         <MenuAppBar title="My Coupons" account />
         <Typography />
         <List style={{ padding: 0, marginBottom: 60 }}>
-          <EnhancedTable />
+          <EnhancedTable coupons={this.props.coupons} />
         </List>
-        <Link to="/coupons/new">
-          <Button fab color="primary" aria-label="add" className="fab-button">
-            <img
-              alt="AddGraphic"
-              src={'../add-a-coupon'}
-              width="200"
-              height="auto"
-            />
-          </Button>
-        </Link>
+        <img
+          alt="AddGraphic"
+          src={addCoupon}
+          width="150"
+          height="auto"
+          style={{ position: 'fixed', right: '45%' }}
+          onClick={e => history.push('/coupons/new')}
+        />
       </div>
     )
   }
