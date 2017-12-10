@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
-import SaveIcon from 'material-ui-icons/Save'
+import SendIcon from 'material-ui-icons/Send'
 
 const styles = theme => ({
   input: {
@@ -83,16 +83,14 @@ class UserForm extends React.Component {
           margin="normal"
           className={classes.input}
         />
-        <Button
-          fab
-          color="primary"
+        <button
           type="submit"
-          aria-label="add"
+          style={{ border: 0, background: 'none' }}
           className="fab-button"
-          disabled={this.props.isActive}
+          // disabled={this.props.isActive}
         >
-          <SaveIcon />
-        </Button>
+          <SendIcon />
+        </button>
       </form>
     )
   }

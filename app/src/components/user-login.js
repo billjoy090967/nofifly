@@ -1,14 +1,13 @@
 import React from 'react'
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import IconButton from 'material-ui/IconButton'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input'
-import { FormControl, FormHelperText } from 'material-ui/Form'
+import { FormControl } from 'material-ui/Form'
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff'
 import Button from 'material-ui/Button'
-import SaveIcon from 'material-ui-icons/Save'
+import SendIcon from 'material-ui-icons/Send'
 
 const styles = theme => ({
   root: {
@@ -76,16 +75,14 @@ class UserLogin extends React.Component {
             }
           />
         </FormControl>
-        <Button
-          fab
-          color="primary"
+        <button
           type="submit"
-          aria-label="add"
+          style={{ border: 0, background: 'none' }}
           className="fab-button"
-          disabled={this.props.isActive}
+          // disabled={this.props.isActive}
         >
-          <SaveIcon />
-        </Button>
+          <SendIcon />
+        </button>
       </div>
     )
   }

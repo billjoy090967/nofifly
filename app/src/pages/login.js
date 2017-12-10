@@ -4,11 +4,7 @@ import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
 import UserLogin from '../components/user-login'
 import { connect } from 'react-redux'
-import {
-  updateNewUserForm,
-  addNewUser,
-  isActive
-} from '../action-creators/users'
+import { addNewUser, isActive } from '../action-creators/users'
 import { UPDATE_NEW_USER_FORM } from '../constants'
 
 // props.users === []

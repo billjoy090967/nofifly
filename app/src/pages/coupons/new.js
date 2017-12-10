@@ -29,10 +29,7 @@ const mapActionsToProps = dispatch => {
       dispatch({ type: UPDATE_NEW_COUPON_FORM, payload: { [field]: value } })
       dispatch(isActive)
     },
-    createCoupon: e => {
-      e.preventDefault()
-      dispatch(createCoupon)
-    },
+    createCoupon: () => dispatch(createCoupon),
     isSubmitActive: () => dispatch(isActive)
   }
 }
