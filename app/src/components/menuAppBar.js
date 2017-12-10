@@ -1,15 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
-import GoBackIcon from 'material-ui-icons/KeyboardArrowLeft'
-import SearchIcon from 'material-ui-icons/Search'
-
-import { connect } from 'react-redux'
-import { propOr, isNil } from 'ramda'
+import AccountCircleIcon from 'material-ui-icons/AccountCircle'
+import { Link } from 'react-router-dom'
+import notiflyLogo from '../media/images/notifly-logo.jpg'
 
 const styles = theme => ({
   root: {
@@ -25,66 +24,71 @@ const styles = theme => ({
   lastButton: {
     marginLeft: 12,
     marginRight: -12
+  },
+  bannerLogo: {
+    width: 'auto',
+    maxHeight: '56px',
+    margin: '0 auto',
+    textAlign: 'center',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0'
+  },
+  bannerContainer: {
+    width: '100%',
+    margin: '0 auto'
   }
 })
 
 const MenuAppBar = props => {
   const { classes } = props
-  const secondaryMenu = propOr(null, 'secondaryMenu', props)
+
   return (
     <div id="menu-container" className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" style={{ maxHeight: '150px' }}>
         <Toolbar>
           <IconButton
             className={classes.firstButton}
             color="contrast"
             aria-label="Menu"
-            onClick={
-              props.goBack
-                ? typeof props.goBack === 'string'
-                  ? props.lastPage(props.history, props.goBack)
-                  : props.lastPage(props.history)
-                : props.toggleDrawer
-            }
+            onClick={props.toggleDrawer}
           >
-            {props.goBack ? (
-              <GoBackIcon style={{ fontSize: 32, marginTop: 0 }} />
-            ) : (
-              <MenuIcon />
-            )}
+            <MenuIcon />
           </IconButton>
+          <img
+            alt="notifly-logo"
+            src={notiflyLogo}
+            className={classes.bannerLogo}
+          />
+
           <Typography type="title" color="inherit" className={classes.flex}>
             {props.title}
           </Typography>
-          <IconButton
-            className={isNil(secondaryMenu) ? classes.lastButton : ''}
-            color="contrast"
-            aria-label="Search"
-            onClick={props.toggleDrawer}
-          >
-            <SearchIcon />
-          </IconButton>
 
-          {secondaryMenu}
+          <Link to="/login/" className="router-link">
+            <IconButton color="contrast" aria-label="Account">
+              <AccountCircleIcon />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
   )
 }
-
 const mapStateToProps = state => ({})
 const mapActionsToProps = (dispatch, getState) => ({
   toggleDrawer: () => dispatch({ type: 'TOGGLE_DRAWER' }),
   lastPage: (history, page) => e => {
     e.preventDefault()
-    if (page) {
-      history.replace(page)
-    } else {
-      history.goBack()
-    }
+    history.goBack()
+    // if (page) {
+    //   history.replace(page)
+    // } else {
+    // history.goBack()
+    // }
   }
 })
-
 const connector = connect(mapStateToProps, mapActionsToProps)
 
 export default connector(withStyles(styles)(MenuAppBar))

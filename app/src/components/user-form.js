@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Input, { InputLabel } from 'material-ui/Input'
-import { MenuItem } from 'material-ui/Menu'
-import { FormControl } from 'material-ui/Form'
-import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
-import SaveIcon from 'material-ui-icons/Save'
-import { map } from 'ramda'
+import SendIcon from 'material-ui-icons/Send'
 
 const styles = theme => ({
   input: {
@@ -19,14 +14,9 @@ const styles = theme => ({
   }
 })
 
-const couponMenuItem = coupon => {
-  return <MenuItem value={coupon.name}>{coupon.name}</MenuItem>
-}
-
 class UserForm extends React.Component {
   render() {
     const { classes } = this.props
-
     return (
       <form
         style={{ marginTop: 8 }}
@@ -36,24 +26,6 @@ class UserForm extends React.Component {
           this.props.onSubmit()
         }}
       >
-        <FormControl className={classes.input} required>
-          <InputLabel htmlFor="couponId">Coupon</InputLabel>
-          <Select
-            name="couponId"
-            value={this.props.newUser.couponId}
-            onChange={e => {
-              this.props.onChange('couponId', e.target.value)
-            }}
-            input={<Input id="couponId" required />}
-            autoWidth
-            required
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {map(couponMenuItem, this.props.coupons)}
-          </Select>
-        </FormControl>
         <TextField
           name="firstName"
           label="First Name"
@@ -79,7 +51,7 @@ class UserForm extends React.Component {
         />
         <TextField
           name="email"
-          label="E-Mail Address"
+          label="E-mail Address"
           value={this.props.newUser.email}
           onChange={e => {
             this.props.onChange('email', e.target.value)
@@ -101,24 +73,29 @@ class UserForm extends React.Component {
           required
           multiline
         />
-
-        <Button
-          fab
-          color="primary"
+        <TextField
+          name="password"
+          label="Password"
+          value={this.props.newUser.password}
+          onChange={e => {
+            this.props.onChange('password', e.target.value)
+          }}
+          margin="normal"
+          className={classes.input}
+        />
+        <button
           type="submit"
-          aria-label="add"
+          style={{ border: 0, background: 'none' }}
           className="fab-button"
-          disabled={this.props.isActive}
+          // disabled={this.props.isActive}
         >
-          <SaveIcon />
-        </Button>
+          <SendIcon />
+        </button>
       </form>
     )
   }
 }
-
 UserForm.propTypes = {
   classes: PropTypes.object.isRequired
 }
-
 export default withStyles(styles)(UserForm)

@@ -2,8 +2,8 @@ import React from 'react'
 import withRoot from '../components/withRoot'
 import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
-import { Link } from 'react-router-dom'
 import PaperSheet from '../components/paperSheet'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Button from 'material-ui/Button'
 import Gavel from 'material-ui-icons/Gavel'
@@ -66,7 +66,7 @@ const Legal = props => {
             About
           </Button>
         </Link>
-        <Link to="/home" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <Button
             raised
             color="primary"

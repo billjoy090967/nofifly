@@ -7,19 +7,19 @@ import {
   IS_ACTIVE,
   ONCHANGE_EDIT_USER_FORM
 } from '../constants'
-import { isEmpty } from 'ramda'
+
+import { isEmpty, assoc } from 'ramda'
 const url = process.env.REACT_APP_BASE_URL
 
 export const setUsers = async (dispatch, getState) => {
   const response = await fetch(`${url}/users`).then(res => res.json())
   dispatch({ type: SET_USERS, payload: response })
 }
-
 export const setCurrentUser = id => async (dispatch, getState) => {
   const response = await fetch(`${url}/users/${id}`).then(res => res.json())
   dispatch({
     type: SET_CURRENT_USER,
-    payload: response
+    payload: assoc('confirmDelete', false, response)
   })
 }
 
@@ -32,7 +32,9 @@ export const onChangeEditUserForm = (field, value) => (dispatch, getState) => {
 }
 
 export const addNewUser = (data, history) => async (dispatch, getState) => {
-  const headers = { 'Content-Type': 'application/json' }
+  const headers = {
+    'Content-Type': 'application/json'
+  }
   const method = 'POST'
   const body = JSON.stringify(data)
 
@@ -44,8 +46,10 @@ export const addNewUser = (data, history) => async (dispatch, getState) => {
 
   if (result.ok) {
     dispatch(setUsers)
+    // dispatch({ type: IS_ACTIVE, payload: true })
     history.push('/users')
   } else {
+    // handle error
   }
 }
 
@@ -56,7 +60,9 @@ export const setEditUser = id => async (dispatch, getState) => {
 }
 
 export const addEditUser = (data, history) => async (dispatch, getState) => {
-  const headers = { 'Content-Type': 'application/json' }
+  const headers = {
+    'Content-Type': 'application/json'
+  }
   const method = 'PUT'
   const body = JSON.stringify(data)
 
@@ -68,6 +74,7 @@ export const addEditUser = (data, history) => async (dispatch, getState) => {
 
   if (result.ok) {
     dispatch(setUsers)
+
     history.push('/users/' + data._id)
   } else {
   }

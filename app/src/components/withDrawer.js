@@ -2,13 +2,13 @@ import React from 'react'
 import { Drawer } from 'material-ui'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
-import InboxIcon from 'material-ui-icons/Inbox'
+import AccountCircleIcon from 'material-ui-icons/AccountCircle'
 import HomeIcon from 'material-ui-icons/Home'
 import HelpIcon from 'material-ui-icons/Help'
 import ViewList from 'material-ui-icons/ViewList'
+import GavelIcon from 'material-ui-icons/Gavel'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import GavelIcon from 'material-ui-icons/Gavel'
 
 const sideList = (
   <div>
@@ -21,20 +21,12 @@ const sideList = (
           <ListItemText primary="Home" />
         </ListItem>
       </Link>
-      <Link to="/myCoupons" className="router-link">
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="My Coupons" />
-        </ListItem>
-      </Link>
-      <Link to="/login" className="router-link">
+      <Link to="/coupons/" className="router-link">
         <ListItem button>
           <ListItemIcon>
             <ViewList />
           </ListItemIcon>
-          <ListItemText primary="Login" />
+          <ListItemText primary="My Coupons" />
         </ListItem>
       </Link>
     </List>
@@ -57,6 +49,14 @@ const sideList = (
         </ListItem>
       </Link>
     </List>
+    <Link to="/login" className="router-link">
+      <ListItem button>
+        <ListItemIcon>
+          <AccountCircleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Login" />
+      </ListItem>
+    </Link>
   </div>
 )
 

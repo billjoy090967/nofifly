@@ -8,9 +8,9 @@ import {
   addEditUser,
   setEditUser,
   isActive,
-  onChangeEditUserForm
+  onChangeEditUserForm,
+  setUsers
 } from '../../action-creators/users'
-import { setCoupons } from '../../action-creators/coupons'
 
 // props.users === []
 class EditUser extends React.Component {
@@ -23,7 +23,12 @@ class EditUser extends React.Component {
   render() {
     return (
       <div>
-        <MenuAppBar title="Edit User" search goBack {...this.props} />
+        <MenuAppBar
+          title="Edit My Account Info"
+          search
+          goBack
+          {...this.props}
+        />
         <EditUserForm
           onChange={this.props.onChange}
           editUser={this.props.editUser}
@@ -56,7 +61,7 @@ const mapActionsToProps = dispatch => {
     onSubmit: (data, history) => e => {
       dispatch(addEditUser(data, history))
     },
-    onMount: () => dispatch(setCoupons),
+    onMount: () => dispatch(setUsers),
     setEditUser: id => dispatch(setEditUser(id)),
     isSubmitActive: () => dispatch(isActive)
   }

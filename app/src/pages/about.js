@@ -3,9 +3,9 @@ import Button from 'material-ui/Button'
 import withRoot from '../components/withRoot'
 import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
-import { connect } from 'react-redux'
 import PaperSheet from '../components/paperSheet'
-import notifly from '../notifly.jpg'
+import { connect } from 'react-redux'
+import notifly from '../media/images/notifly.jpg'
 import Favorite from 'material-ui-icons/Favorite'
 import Legal from 'material-ui-icons/Gavel'
 import { CardMedia } from 'material-ui/Card'
@@ -16,14 +16,11 @@ const aboutText = [
     text: (
       <CardMedia
         style={{
-          height: '20vh',
           maxHeight: '128px',
           maxWidth: '357px',
           margin: '0 auto',
           display: 'block'
         }}
-        image={notifly}
-        title="Noti-fly"
       />
     ),
     style: 'paragraph',
@@ -61,7 +58,7 @@ const About = props => {
           </Button>
         </Link>
 
-        <Link to="/home" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <Button
             raised
             color="primary"

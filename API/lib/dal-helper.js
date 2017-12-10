@@ -7,7 +7,9 @@ const db = new PouchDB(process.env.COUCHDB_URL + process.env.COUCHDB_NAME)
 const { pluck, map, prop } = require('ramda')
 
 const get = id => db.get(id)
-const create = doc => db.put(doc)
+const create = doc => {
+  return db.put(doc)
+}
 const update = doc => db.put(doc)
 const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
 const find = id => db.find(id)

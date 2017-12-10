@@ -4,54 +4,35 @@ import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
 import UserForm from '../../components/user-form'
 import { connect } from 'react-redux'
-import {
-  updateNewUserForm,
-  addNewUser,
-  isActive
-} from '../../action-creators/users'
-import { setCoupons } from '../../action-creators/coupons'
+import { addNewUser, isActive } from '../../action-creators/users'
+import { UPDATE_NEW_USER_FORM } from '../../constants'
 
 // props.users === []
 class NewUser extends React.Component {
   componentDidMount() {
-    this.props.onMount()
     this.props.isSubmitActive()
   }
   render() {
     return (
       <div>
-        <MenuAppBar title="Add User" search goBack {...this.props} />
-        <UserForm
-          onChange={this.props.onChange}
-          newUser={this.props.newUser}
-          onSubmit={this.props.onSubmit(this.props.newUser, this.props.history)}
-          isActive={this.props.isActive}
-          coupons={this.props.coupons}
-        />
+        <MenuAppBar title="Create an Account!" search goBack {...this.props} />
+        <UserForm {...this.props} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    newUser: state.newUser,
-    isActive: state.isActive,
-    coupons: state.coupons
-  }
-}
+const mapStateToProps = state => state
 
 const mapActionsToProps = dispatch => {
   return {
     onChange: (field, value) => {
-      dispatch(updateNewUserForm(field, value))
+      dispatch({ type: UPDATE_NEW_USER_FORM, payload: { [field]: value } })
       dispatch(isActive)
     },
-    onSubmit: (data, history) => e => {
-      dispatch(addNewUser(data, history))
-    },
-    onMount: () => {
-      dispatch(setCoupons)
+    addNewUser: e => {
+      e.prevenDefault()
+      dispatch(addNewUser)
     },
     isSubmitActive: () => dispatch(isActive)
   }
