@@ -31,12 +31,6 @@ function createData(coupons, category, name, deal, expirationDate) {
 }
 
 const columnData = [
-  {
-    id: 'coupons',
-    numeric: false,
-    disablePadding: true,
-    label: 'My Coupons'
-  },
   { id: 'category', numeric: true, disablePadding: false, label: 'Category' },
   { id: 'name', numeric: true, disablePadding: false, label: 'Name' },
   { id: 'deal', numeric: true, disablePadding: false, label: 'Deal' },
@@ -200,20 +194,14 @@ class EnhancedTable extends React.Component {
       orderBy: 'name',
       selected: [],
       data: [
-        createData('Cupcake', 305, 3.7, 67),
-        createData('Donut', 452, 25.0, 51),
-        createData('Eclair', 262, 16.0, 24),
-        createData('Frozen yoghurt', 159, 6.0, 24),
-        createData('Gingerbread', 356, 16.0, 49),
-        createData('Honeycomb', 408, 3.2, 87),
-        createData('Ice cream sandwich', 237, 9.0, 37),
-        createData('Jelly Bean', 375, 0.0, 94),
-        createData('KitKat', 518, 26.0, 65),
-        createData('Lollipop', 392, 0.2, 98),
-        createData('Marshmallow', 318, 0, 81),
-        createData('Nougat', 360, 19.0, 9),
-        createData('Oreo', 437, 18.0, 63)
-      ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
+        createData('Restaurant', 'Pizza Hut', 'BOGO', '2018-05-31'),
+        createData('Service', 'Jiffy Lube', '$19.99', '2017-12-31'),
+        createData('Entertainment', 'Wild Blue Ropes', '$20.00', '2018-07-31'),
+        createData('Store', 'Kohls', '$25.00', '2018-11-01'),
+        createData('Restaurant', 'Perkins', '$1.00', '2018-12-01'),
+        createData('Grocery', 'Publix', '$0.50', '2017-12-20'),
+        createData('Grocery', 'Harris Teter', '$2.50', '2017-12-25')
+      ].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
       page: 0,
       rowsPerPage: 10
     }
