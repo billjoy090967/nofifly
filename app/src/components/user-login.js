@@ -11,10 +11,7 @@ import SendIcon from 'material-ui-icons/Send'
 import history from '../history'
 
 const styles = theme => ({
-	root: {
-		display: 'flex',
-		flexWrap: 'wrap'
-	},
+	root: {},
 	formControl: {
 		margin: theme.spacing.unit
 	},
@@ -47,7 +44,11 @@ class UserLogin extends React.Component {
 
 		return (
 			<div className={classes.root}>
-				<FormControl fullWidth className={classes.formControl}>
+				<FormControl
+					fullWidth
+					className={classes.formControl}
+					style={{ maxWidth: '300px' }}
+				>
 					<InputLabel htmlFor="email">Email</InputLabel>
 					<Input
 						id="email"
@@ -56,7 +57,7 @@ class UserLogin extends React.Component {
 						startAdornment={<InputAdornment position="start" />}
 					/>
 				</FormControl>
-
+				<br />
 				<FormControl className={classes.formControl}>
 					<InputLabel htmlFor="password">Password</InputLabel>
 					<Input
@@ -78,7 +79,12 @@ class UserLogin extends React.Component {
 				</FormControl>
 				<button
 					type="submit"
-					style={{ border: 0, background: 'none' }}
+					style={{
+						border: 0,
+						background: 'none',
+						position: 'fixed',
+						left: '5px'
+					}}
 					className="fab-button"
 					onClick={e => history.push('/coupons')}
 					// disabled={this.props.isActive}
