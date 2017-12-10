@@ -1,5 +1,5 @@
 # notifly
-<<<<<<< HEAD
+
 A self-built app to remind you of the coupons and gift cards you have in your wallet or purse.
 =======
 
@@ -12,4 +12,4 @@ A self-built PWA to remind you of the coupons and giftcards you have in your wal
 - [API](./api/readme.md)
 >>>>>>> APP
 
-<img src="/images/notifly.jpg" class="w-50">
+<img src="/app/src/media/images/notifly.jpg" class="w-50">
