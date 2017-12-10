@@ -25,7 +25,7 @@ import DeleteIcon from 'material-ui-icons/Delete'
 import FilterListIcon from 'material-ui-icons/FilterList'
 
 let counter = 0
-function createData(coupons, category, name, deal, expirationDate) {
+function createData(category, name, deal, expirationDate) {
   counter += 1
   return { id: counter, category, name, deal, expirationDate }
 }
@@ -68,13 +68,6 @@ class EnhancedTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
-          </TableCell>
           {columnData.map(column => {
             return (
               <TableCell
@@ -199,11 +192,11 @@ class EnhancedTable extends React.Component {
         createData('Entertainment', 'Wild Blue Ropes', '$20.00', '2018-07-31'),
         createData('Store', 'Kohls', '$25.00', '2018-11-01'),
         createData('Restaurant', 'Perkins', '$1.00', '2018-12-01'),
-        createData('Grocery', 'Publix', '$0.50', '2017-12-25'),
-        createData('Grocery', 'Harris Teeter', '$2.50', '2018-04-15')
+        createData('Grocery', 'Publix', '$0.50', '2017-12-20'),
+        createData('Grocery', 'Harris Teter', '$2.50', '2017-12-25')
       ].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
       page: 0,
-      rowsPerPage: 10
+      rowsPerPage: 7
     }
   }
 
@@ -287,7 +280,7 @@ class EnhancedTable extends React.Component {
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
             />
-            <TableBody>
+            <TableBody style={{ paddingLeft: '20px' }}>
               {data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
@@ -303,10 +296,7 @@ class EnhancedTable extends React.Component {
                       key={n.id}
                       selected={isSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
-                      </TableCell>
-                      <TableCell padding="none">{n.category}</TableCell>
+                      <TableCell numeric>{n.category}</TableCell>
                       <TableCell numeric>{n.name}</TableCell>
                       <TableCell numeric>{n.deal}</TableCell>
                       <TableCell numeric>{n.expirationDate}</TableCell>

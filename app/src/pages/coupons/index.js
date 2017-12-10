@@ -2,7 +2,6 @@ import React from 'react'
 import withRoot from '../../components/withRoot'
 import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
-import EnhancedTable from '../../components/enhanced-table'
 
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
@@ -10,7 +9,7 @@ import List from 'material-ui/List'
 
 import { connect } from 'react-redux'
 import { map } from 'ramda'
-import CouponForm from '../../components/coupon-form'
+import EnhancedTable from '../../components/enhanced-table'
 import { Link } from 'react-router-dom'
 import { setCoupons } from '../../action-creators/coupons'
 
@@ -28,7 +27,7 @@ class Coupons extends React.Component {
         <MenuAppBar title="My Coupons" account />
         <Typography />
         <List style={{ padding: 0, marginBottom: 60 }}>
-          {map(CouponForm, allCoupons)}
+          <EnhancedTable />
         </List>
         <Link to="/coupons/new">
           <Button fab color="primary" aria-label="add" className="fab-button">
