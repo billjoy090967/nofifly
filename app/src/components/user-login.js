@@ -10,6 +10,7 @@ import SendIcon from 'material-ui-icons/Send'
 import history from '../history'
 
 const styles = theme => ({
+<<<<<<< HEAD
   root: {},
   formControl: {
     margin: theme.spacing.unit
@@ -17,6 +18,15 @@ const styles = theme => ({
   withoutLabel: {
     marginTop: theme.spacing.unit * 3
   }
+=======
+	root: {},
+	formControl: {
+		margin: theme.spacing.unit
+	},
+	withoutLabel: {
+		marginTop: theme.spacing.unit * 3
+	}
+>>>>>>> b24a6a522ac76b405017c817ad191310d8c3194a
 })
 
 class UserLogin extends React.Component {
@@ -41,6 +51,7 @@ class UserLogin extends React.Component {
   render() {
     const { classes } = this.props
 
+<<<<<<< HEAD
     return (
       <div className={classes.root}>
         <FormControl
@@ -94,6 +105,60 @@ class UserLogin extends React.Component {
       </div>
     )
   }
+=======
+		return (
+			<div className={classes.root}>
+				<FormControl
+					fullWidth
+					className={classes.formControl}
+					style={{ maxWidth: '300px' }}
+				>
+					<InputLabel htmlFor="email">Email</InputLabel>
+					<Input
+						id="email"
+						value={this.state.email}
+						onChange={this.handleChange('email')}
+						startAdornment={<InputAdornment position="start" />}
+					/>
+				</FormControl>
+				<br />
+				<FormControl className={classes.formControl}>
+					<InputLabel htmlFor="password">Password</InputLabel>
+					<Input
+						id="password"
+						type={this.state.showPassword ? 'text' : 'password'}
+						value={this.state.password}
+						onChange={this.handleChange('password')}
+						endAdornment={
+							<InputAdornment position="end">
+								<IconButton
+									onClick={this.handleClickShowPasssword}
+									onMouseDown={this.handleMouseDownPassword}
+								>
+									{this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+							</InputAdornment>
+						}
+					/>
+				</FormControl>
+				<button
+					type="submit"
+					style={{
+						border: 0,
+						background: 'none',
+						position: 'fixed',
+						left: '5px'
+					}}
+					className="fab-button"
+					onClick={e => history.push('/coupons')}
+					// disabled={this.props.isActive}
+				>
+					<SendIcon />
+				</button>
+			</div>
+		)
+	}
+>>>>>>> b24a6a522ac76b405017c817ad191310d8c3194a
 }
 
 UserLogin.propTypes = {
