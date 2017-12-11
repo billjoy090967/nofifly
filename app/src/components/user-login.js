@@ -75,6 +75,7 @@ class UserLogin extends React.Component {
               </InputAdornment>
             }
           />
+          <br />
         </FormControl>
         <button
           type="submit"

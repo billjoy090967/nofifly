@@ -9,6 +9,7 @@ import {
 } from '../constants'
 import history from '../history'
 import { isEmpty, assoc } from 'ramda'
+
 const url = process.env.REACT_APP_BASE_URL
 export const setCoupons = async (dispatch, getState) => {
   const response = await fetch(`${url}/coupons`).then(res => res.json())

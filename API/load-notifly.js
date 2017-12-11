@@ -13,7 +13,30 @@ db.bulkDocs([
     lastName: 'Joy',
     zipcode: '29429'
   },
-
+  {
+    _id: 'user_tiffanyjoy160@gmail.com',
+    type: 'user',
+    email: 'tiffanyjoy160@gmail.com',
+    firstName: 'Tiffany',
+    lastName: 'Joy',
+    zipcode: '29429'
+  },
+  {
+    _id: 'user_rbickel1945@att.net',
+    type: 'user',
+    email: 'rbickel1945@att.net',
+    firstName: 'Ruth',
+    lastName: 'Bickel',
+    zipcode: '54313'
+  },
+  {
+    _id: 'user_mnijoy@gmail.com',
+    type: 'user',
+    email: 'mnijoy@gmail.com',
+    firstName: 'Irene',
+    lastName: 'Joy',
+    zipcode: '20855'
+  },
   {
     _id: 'coupon_billjoy090967@gmail.com_pizza-hut_2018-05-31',
     userId: 'user_billjoy090967@gmail.com',
@@ -44,15 +67,6 @@ db.bulkDocs([
     deal: '$20.00',
     expirationDate: '2018-07-31'
   },
-  {
-    _id: 'user_tiffanyjoy160@gmail.com',
-    type: 'user',
-    email: 'tiffanyjoy160@gmail.com',
-    firstName: 'Tiffany',
-    lastName: 'Joy',
-    zipcode: '29429'
-  },
-
   {
     _id: 'coupon_tiffanyjoy160@gmail.com_perkins_2018-12-01',
     userId: 'user_tiffanyjoy160@gmail.com',
@@ -94,19 +108,13 @@ db.bulkDocs([
     expirationDate: '2018-12-25'
   },
   {
-    _id: 'user_rbickel1945@att.net',
-    type: 'user',
-    email: 'rbickel1945@att.net',
-    firstName: 'Ruth',
-    lastName: 'Bickel',
-    zipcode: '54313'
-  },
-  {
-    _id: 'user_mnijoy@gmail.com',
-    type: 'user',
-    email: 'mnijoy@gmail.com',
-    firstName: 'Irene',
-    lastName: 'Joy',
-    zipcode: '20855'
+    _id: 'coupon_billjoy090967@gmail.com_bonefish_grill_2020_12_31',
+    userId: 'user_billjoy090967@gmail.com',
+    type: 'coupon',
+    category: 'Restaurant',
+    name: 'Bonefish Grill',
+    description: '$50.00',
+    deal: '$50.00',
+    expirationDate: '2020-12-31'
   }
 ])

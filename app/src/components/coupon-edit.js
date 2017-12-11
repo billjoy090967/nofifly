@@ -76,6 +76,8 @@ class CouponForm extends React.Component {
           className={classes.input}
         />
         <Link to="/coupons">
+          <br />
+          <br />
           <Button
             fab
             disabled={this.props.isActive}

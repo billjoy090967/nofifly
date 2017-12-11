@@ -78,6 +78,9 @@ class CouponForm extends React.Component {
           required
           className={classes.input}
         />
+        <br />
+        <br />
+
         <button
           type="submit"
           style={{

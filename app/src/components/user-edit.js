@@ -61,12 +61,14 @@ class EditUserForm extends React.Component {
           required
           className={classes.input}
         />
+        <br />
+        <br />
         <Button
           fab
           disabled={this.props.isActive}
           className="fab-button"
           color="secondary"
-          aria-label="add"
+          aria-label="save"
           type="submit"
         >
           <SaveIcon />

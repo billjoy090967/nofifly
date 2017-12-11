@@ -80,11 +80,19 @@ class UserForm extends React.Component {
             this.props.onChange('password', e.target.value)
           }}
           margin="normal"
+          required
           className={classes.input}
         />
+        <br />
+        <br />
         <button
           type="submit"
-          style={{ border: 0, background: 'none' }}
+          style={{
+            border: 0,
+            background: 'none',
+            position: 'fixed',
+            left: '5px'
+          }}
           className="fab-button"
           // disabled={this.props.isActive}
         >

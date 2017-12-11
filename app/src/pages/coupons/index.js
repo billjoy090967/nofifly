@@ -11,6 +11,7 @@ import EnhancedTable from '../../components/enhanced-table'
 import { setCoupons } from '../../action-creators/coupons'
 import addCoupon from '../../media/images/add-a-coupon.jpg'
 import history from '../../history'
+import UserLogin from '../../components/user-login'
 
 class Coupons extends React.Component {
   componentDidMount() {

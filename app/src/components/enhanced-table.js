@@ -20,8 +20,6 @@ import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import Tooltip from 'material-ui/Tooltip'
-import DeleteIcon from 'material-ui-icons/Delete'
-import FilterListIcon from 'material-ui-icons/FilterList'
 import history from '../history'
 import { connect } from 'react-redux'
 
@@ -128,25 +126,10 @@ let EnhancedTableToolbar = props => {
         {numSelected > 0 ? (
           <Typography type="subheading">{numSelected} selected</Typography>
         ) : (
-          <Typography type="title">My Coupons</Typography>
+          <Typography type="title" />
         )}
       </div>
       <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
     </Toolbar>
   )
 }
