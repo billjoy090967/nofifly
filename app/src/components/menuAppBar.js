@@ -46,7 +46,7 @@ const MenuAppBar = props => {
 
   return (
     <div id="menu-container" className={classes.root}>
-      <AppBar position="fixed" style={{ maxHeight: '150px' }}>
+      <AppBar position="fixed" color="secondary" style={{ maxHeight: '150px' }}>
         <Toolbar>
           <IconButton
             className={classes.firstButton}

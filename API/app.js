@@ -12,7 +12,8 @@ const {
   getCoupon,
   updateCoupon,
   deleteCoupon,
-  getAllCoupons
+  getAllCoupons,
+  getCouponsByEmail
 } = require('./dal')
 const port = process.env.PORT || 5000
 const HTTPError = require('node-http-error')
@@ -33,8 +34,7 @@ const {
   split,
   trim,
   last,
-  toLower,
-  equals
+  toLower
 } = require('ramda')
 const checkRequiredFields = require('./lib/check-required-fields')
 const cors = require('cors')
@@ -226,13 +226,8 @@ app.delete('/coupons/:id', (req, res, next) => {
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
 
-app.get('/coupons', (req, res, next) => {
-  getAllCoupons({
-    include_docs: true,
-    inclusive_end: true,
-    start_key: 'coupon_',
-    end_key: 'coupon_\ufff0'
-  })
+app.get('/coupons/users/:emailAddress', (req, res, next) => {
+  getCouponsByEmail(req.params.emailAddress)
     .then(docs => {
       res.status(200).send(docs)
     })

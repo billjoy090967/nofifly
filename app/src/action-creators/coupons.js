@@ -5,15 +5,24 @@ import {
   SET_EDIT_COUPON,
   ERROR,
   IS_ACTIVE,
-  CONFIRM_COUPON_DELETE
+  CONFIRM_COUPON_DELETE,
+  COUPONS_BY_EMAIL
 } from '../constants'
 import history from '../history'
 import { isEmpty, assoc } from 'ramda'
 
 const url = process.env.REACT_APP_BASE_URL
+
 export const setCoupons = async (dispatch, getState) => {
   const response = await fetch(`${url}/coupons`).then(res => res.json())
   dispatch({ type: SET_COUPONS, payload: response })
+}
+
+export const couponsByEmail = userId => async (dispatch, getState) => {
+  const response = await fetch(`${url}/coupons/users/${userId}`).then(res =>
+    res.json()
+  )
+  dispatch({ type: COUPONS_BY_EMAIL, payload: response })
 }
 
 export const setCurrentCoupon = id => async (dispatch, getState) => {

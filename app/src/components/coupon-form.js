@@ -21,9 +21,8 @@ class CouponForm extends React.Component {
         style={{ marginTop: 8 }}
         autoComplete="off"
         onSubmit={e => {
-          console.log('e', e),
-            this.props.createCoupon(e),
-            history.push('/coupons')
+          this.props.createCoupon(e)
+          history.push('/coupons')
         }}
       >
         <TextField
@@ -54,7 +53,6 @@ class CouponForm extends React.Component {
             this.props.onChange('description', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
           multiline
         />

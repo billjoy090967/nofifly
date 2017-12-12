@@ -18,7 +18,6 @@ import Table, {
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
-import IconButton from 'material-ui/IconButton'
 import Tooltip from 'material-ui/Tooltip'
 import history from '../history'
 import { connect } from 'react-redux'
@@ -229,6 +228,8 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1
 
+  // the data for the table should be availabe as this.props.couponsByEmailData
+  // you need to map over this.props.couponsByEmailData
   render() {
     const { classes } = this.props
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state

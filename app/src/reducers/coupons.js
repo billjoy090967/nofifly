@@ -12,7 +12,9 @@ import { merge, not } from 'ramda'
 export const coupons = (state = [], action) => {
   switch (action.type) {
     case SET_COUPONS:
+      console.log('THIS SHOULD BE FIRING')
       return action.payload
+      console.log('reducer', action.payload)
     default:
       return state
   }

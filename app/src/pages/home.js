@@ -15,7 +15,19 @@ class Home extends React.Component {
     return (
       <div>
         <MenuAppBar title="Home" />
-
+        <br />
+        <br />
+        <img
+          src={notifly}
+          alt="loading"
+          style={{
+            display: 'block',
+            margin: '0 auto',
+            textAlign: 'center',
+            width: '10%',
+            maxWidth: '200px'
+          }}
+        />
         <Link to="/login" style={{ textDecoration: 'none' }}>
           <img
             src={addACoupon}
@@ -30,17 +42,6 @@ class Home extends React.Component {
             }}
           />
         </Link>
-        <img
-          src={notifly}
-          alt="loading"
-          style={{
-            display: 'block',
-            margin: '0 auto',
-            textAlign: 'center',
-            width: '10%',
-            maxWidth: '200px'
-          }}
-        />
       </div>
     )
   }

@@ -11,7 +11,6 @@ import EnhancedTable from '../../components/enhanced-table'
 import { setCoupons } from '../../action-creators/coupons'
 import addCoupon from '../../media/images/add-a-coupon.jpg'
 import history from '../../history'
-import UserLogin from '../../components/user-login'
 
 class Coupons extends React.Component {
   componentDidMount() {
@@ -26,7 +25,7 @@ class Coupons extends React.Component {
         <MenuAppBar title="My Coupons" account />
         <Typography />
         <List style={{ padding: 0, marginBottom: 60 }}>
-          <EnhancedTable coupons={this.props.coupons} />
+          <EnhancedTable couponsByEmailData={this.props.coupons} />
         </List>
         <img
           alt="AddGraphic"
@@ -42,6 +41,7 @@ class Coupons extends React.Component {
 }
 
 // pull in the currently logged in user from state
+
 const mapStateToProps = state => {
   return { coupons: state.coupons }
 }
