@@ -11,11 +11,11 @@ const {
 
 const getAllCoupons = options => allDocs(options || { include_docs: true })
 const getAllUsers = options => allDocs(options || { include_docs: true })
-const getCouponsByEmail = emailAddress =>
+const getCouponsByEmail = userId =>
   findDocs({
     selector: {
       userId: {
-        $eq: `user_${emailAddress}`
+        $eq: userId
       }
     }
   })

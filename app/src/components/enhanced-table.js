@@ -21,6 +21,7 @@ import Paper from 'material-ui/Paper'
 import Tooltip from 'material-ui/Tooltip'
 import history from '../history'
 import { connect } from 'react-redux'
+import { pathOr } from 'ramda'
 
 let counter = 0
 function createData(category, name, deal, expirationDate) {
@@ -249,16 +250,13 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody style={{ paddingLeft: '20px' }}>
-              {data
+              {pathOr([], ['couponsByEmailData'], this.props)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   return (
                     <TableRow
                       hover
-                      onClick={e =>
-                        history.push(
-                          '/coupons/coupon_billjoy090967@gmail.com_harris_teeter_2018-04-15/edit'
-                        )}
+                      onClick={e => history.push('/coupons/' + n._id + '/edit')}
                       tabIndex={-1}
                       key={n.id}
                     >

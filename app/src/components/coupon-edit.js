@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
-import { Link } from 'react-router-dom'
+import history from '../history'
 
 const styles = theme => ({
   input: {
@@ -14,14 +15,17 @@ const styles = theme => ({
   }
 })
 
-class CouponForm extends React.Component {
+class EditCouponForm extends React.Component {
   render() {
     const { classes } = this.props
 
     return (
       <form
         style={{ marginTop: 8 }}
-        onSubmit={this.props.updateCoupon(this.props.editCoupon)}
+        onSubmit={e => {
+          e.preventDefault()
+          this.props.onSubmit()
+        }}
       >
         <TextField
           label="Category"
@@ -34,64 +38,71 @@ class CouponForm extends React.Component {
           className={classes.input}
         />
         <TextField
-          label="Name"
+          name="name"
+          label="Store Name"
           value={this.props.editCoupon.name}
           onChange={e => {
             this.props.onChange('name', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
           multiline
+          required
         />
         <TextField
+          name="deal"
           label="Deal"
           value={this.props.editCoupon.deal}
           onChange={e => {
             this.props.onChange('deal', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
           multiline
         />
         <TextField
+          name="expirationDate"
           label="Expiration Date"
           value={this.props.editCoupon.expirationDate}
           onChange={e => {
             this.props.onChange('expirationDate', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
+          multiline
         />
         <TextField
+          name="description"
           label="Description"
           value={this.props.editCoupon.description}
           onChange={e => {
             this.props.onChange('description', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
+          multiline
         />
-        <Link to="/coupons">
-          <br />
-          <br />
-          <Button
-            fab
-            disabled={this.props.isActive}
-            className="fab-button"
-            color="secondary"
-            aria-label="add"
-            type="submit"
-          >
-            <SaveIcon />
-          </Button>
-        </Link>
+        <br />
+        <br />
+        <Button
+          fab
+          color="secondary"
+          type="submit"
+          aria-label="edit"
+          className="fab-button"
+          disabled={this.props.isActive}
+          onClick={e => history.goBack()}
+        >
+          <SaveIcon />
+        </Button>
       </form>
     )
   }
 }
-
-export default withStyles(styles)(CouponForm)
+EditCouponForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+export default withStyles(styles)(EditCouponForm)

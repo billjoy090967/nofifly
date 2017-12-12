@@ -6,6 +6,7 @@ import {
   currentCoupon,
   coupon,
   editCoupon,
+  couponsByEmail,
   isActive
 } from './reducers/coupons'
 import thunk from 'redux-thunk'
@@ -21,11 +22,10 @@ const store = createStore(
     editCoupon,
     newUser,
     editUser,
-    isActive
+    isActive,
+    couponsByEmail
   }),
   applyMiddleware(thunk)
 )
-store.subscribe(() => {
-  console.log('store.getState()', store.getState())
-})
+store.subscribe(() => {})
 export default store

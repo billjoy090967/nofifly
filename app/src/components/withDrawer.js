@@ -21,7 +21,7 @@ const sideList = (
           <ListItemText primary="Home" />
         </ListItem>
       </Link>
-      <Link to="/coupons/" className="router-link">
+      <Link to="/coupons/billjoy090967@gmail.com" className="router-link">
         <ListItem button>
           <ListItemIcon>
             <ViewList />

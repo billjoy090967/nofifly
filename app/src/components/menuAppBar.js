@@ -56,11 +56,14 @@ const MenuAppBar = props => {
           >
             <MenuIcon />
           </IconButton>
-          <img
-            alt="notifly-logo"
-            src={notiflyLogo}
-            className={classes.bannerLogo}
-          />
+
+          <Link to="/" className="router-link">
+            <img
+              alt="notifly-logo"
+              src={notiflyLogo}
+              className={classes.bannerLogo}
+            />
+          </Link>
 
           <Typography type="title" color="inherit" className={classes.flex}>
             {props.title}

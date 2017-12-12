@@ -226,8 +226,8 @@ app.delete('/coupons/:id', (req, res, next) => {
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
 
-app.get('/coupons/users/:emailAddress', (req, res, next) => {
-  getCouponsByEmail(req.params.emailAddress)
+app.get('/coupons/users/:userId', (req, res, next) => {
+  getCouponsByEmail(req.params.userId)
     .then(docs => {
       res.status(200).send(docs)
     })

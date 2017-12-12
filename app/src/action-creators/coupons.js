@@ -3,36 +3,21 @@ import {
   SET_COUPONS,
   SET_CURRENT_COUPON,
   SET_EDIT_COUPON,
-  ERROR,
+  UPDATE_NEW_COUPON_FORM,
   IS_ACTIVE,
+  ERROR,
+  ONCHANGE_EDIT_COUPON_FORM,
   CONFIRM_COUPON_DELETE,
   COUPONS_BY_EMAIL
 } from '../constants'
-import history from '../history'
 import { isEmpty, assoc } from 'ramda'
-
+import history from '../history'
 const url = process.env.REACT_APP_BASE_URL
 
 export const setCoupons = async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons`).then(res => res.json())
+  const response = await fetch(`${url}/coupons/`).then(res => res.json())
   dispatch({ type: SET_COUPONS, payload: response })
 }
-
-export const couponsByEmail = userId => async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/users/${userId}`).then(res =>
-    res.json()
-  )
-  dispatch({ type: COUPONS_BY_EMAIL, payload: response })
-}
-
-export const setCurrentCoupon = id => async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/${id}`).then(res => res.json())
-  dispatch({
-    type: SET_CURRENT_COUPON,
-    payload: assoc('confirmDelete', false, response)
-  })
-}
-
 export const deleteCoupon = id => async (dispatch, getState) => {
   const response = await fetch(`${url}/coupons/${id}`, {
     headers: {
@@ -40,7 +25,6 @@ export const deleteCoupon = id => async (dispatch, getState) => {
     },
     method: 'DELETE'
   }).then(res => res.json())
-  console.log('response', response)
   if (!response.ok) {
     dispatch({ type: CONFIRM_COUPON_DELETE })
     return
@@ -52,36 +36,57 @@ export const deleteCoupon = id => async (dispatch, getState) => {
   history.push('/coupons')
 }
 
-export const createCoupon = async (dispatch, getState) => {
-  const coupon = getState().coupon
-  const response = await fetch(`${url}/coupons`, {
+export const setCurrentCoupon = id => async (dispatch, getState) => {
+  const response = await fetch(`${url}/coupons/${id}`).then(res => res.json())
+  dispatch({
+    type: SET_CURRENT_COUPON,
+    payload: assoc('confirmDelete', false, response)
+  })
+}
+
+export const couponsByEmail = userId => async (dispatch, getState) => {
+  userId = 'user_' + userId
+  const response = await fetch(`${url}/coupons/users/${userId}`, {
     headers: {
       'Content-Type': 'application/json'
     },
-    method: 'POST',
-    body: JSON.stringify(coupon)
+    method: 'GET'
+  }).then(res => res.json())
+  console.log('response', response)
+  dispatch({ type: COUPONS_BY_EMAIL, payload: response })
+}
+
+export const createCoupon = (data, history) => async (dispatch, getState) => {
+  const headers = {
+    'Content-Type': 'application/json'
+  }
+  const method = 'POST'
+  const body = JSON.stringify(data)
+
+  const result = await fetch(`${url}/coupons`, {
+    headers,
+    method,
+    body
   }).then(res => res.json())
 
-  if (!response.ok) {
-    dispatch({ type: ERROR, payload: 'Could not add coupon' })
-    return
+  if (result.ok) {
+    dispatch(setCoupons)
+    // dispatch({ type: IS_ACTIVE, payload: true })
+    history.push('/coupons')
+  } else {
+    // handle error
   }
-  dispatch(setCoupons)
-
-  history.push('/coupons')
 }
 
 export const setEditCoupon = id => async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/${id}`).then(res =>
-    res.json().catch(err => console.log('err', err))
-  )
-  console.log('response', response)
+  const response = await fetch(`${url}/coupons/${id}`).then(res => res.json())
   dispatch({ type: SET_EDIT_COUPON, payload: response })
   dispatch(isActive)
 }
 
-export const updateCoupon = data => async (dispatch, getState) => {
+export const updateCoupon = (data, history) => async (dispatch, getState) => {
   const headers = { 'Content-Type': 'application/json' }
+
   const method = 'PUT'
   const body = JSON.stringify(data)
 
@@ -93,10 +98,13 @@ export const updateCoupon = data => async (dispatch, getState) => {
 
   if (result.ok) {
     dispatch(setCoupons)
-
-    history.push('/coupons/' + data._id)
-  } else {
   }
+}
+export const onChangeEditCouponForm = (field, value) => (
+  dispatch,
+  getState
+) => {
+  dispatch({ type: ONCHANGE_EDIT_COUPON_FORM, payload: { [field]: value } })
 }
 
 export const isActive = async (dispatch, getState) => {

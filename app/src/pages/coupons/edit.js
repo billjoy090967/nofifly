@@ -2,18 +2,21 @@ import React from 'react'
 import withRoot from '../../components/withRoot'
 import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
-import CouponForm from '../../components/coupon-edit'
+import EditCouponForm from '../../components/coupon-edit'
 import { connect } from 'react-redux'
 
 import {
   updateCoupon,
+  setEditCoupon,
   isActive,
-  setEditCoupon
+  onChangeEditCouponForm,
+  setCoupons
 } from '../../action-creators/coupons'
-import { ONCHANGE_EDIT_COUPON_FORM } from '../../constants'
+import { setUsers } from '../../action-creators/users'
 
 class EditCoupon extends React.Component {
   componentDidMount() {
+    //this.props.onMount()
     const id = this.props.match.params.id
     this.props.setEditCoupon(id)
     // this.props.isSubmitActive()
@@ -22,24 +25,35 @@ class EditCoupon extends React.Component {
     return (
       <div>
         <MenuAppBar title="Edit Your Coupon" search goBack {...this.props} />
-        <CouponForm isActive={this.props.isActive} {...this.props} />
+        <EditCouponForm
+          onChange={this.props.onChange}
+          editCoupon={this.props.editCoupon}
+          onSubmit={this.props.onSubmit(this.props.editCoupon)}
+          isActive={this.props.isActive}
+        />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => {
+  return {
+    editCoupon: state.editCoupon,
+    isActive: state.isActive,
+    users: state.users
+  }
+}
 
 const mapActionsToProps = dispatch => {
   return {
     onChange: (field, value) => {
-      dispatch({ type: ONCHANGE_EDIT_COUPON_FORM, payload: { [field]: value } })
+      dispatch(onChangeEditCouponForm(field, value))
       dispatch(isActive)
     },
-    updateCoupon: data => e => {
-      e.preventDefault()
-      dispatch(updateCoupon(data))
+    onSubmit: (data, history) => e => {
+      dispatch(updateCoupon(data, history))
     },
+    onMount: () => dispatch(setCoupons),
     setEditCoupon: id => dispatch(setEditCoupon(id)),
     isSubmitActive: () => dispatch(isActive)
   }
