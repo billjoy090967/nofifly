@@ -4,7 +4,6 @@ import withDrawer from '../../components/withDrawer'
 import MenuAppBar from '../../components/menuAppBar'
 import EditCouponForm from '../../components/coupon-edit'
 import { connect } from 'react-redux'
-
 import {
   updateCoupon,
   setEditCoupon,
@@ -28,7 +27,10 @@ class EditCoupon extends React.Component {
         <EditCouponForm
           onChange={this.props.onChange}
           editCoupon={this.props.editCoupon}
-          onSubmit={this.props.onSubmit(this.props.editCoupon)}
+          onSubmit={this.props.onSubmit(
+            this.props.editCoupon,
+            this.props.history
+          )}
           isActive={this.props.isActive}
         />
       </div>

@@ -162,7 +162,7 @@ app.get('/users', (req, res, next) => {
 
 app.post('/coupons', (req, res, next) => {
   // TODO: remove this when auth is hooked up
-  req.body.email = 'foo@bar.com'
+  // req.body.email = 'foo@bar.com'
   if (isEmpty(prop('body'), req)) {
     return next(
       new HTTPError(
@@ -239,7 +239,7 @@ app.get('/coupons/users/:userId', (req, res, next) => {
 /// //////////////////
 
 app.use(function(err, req, res, next) {
-  //console.log(req.method, ' ', req.path, ' ', 'error ', err)
+  console.log(req.method, ' ', req.path, ' ', 'error ', err)
   res.status(err.status || 500).send(err)
 })
 

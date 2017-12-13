@@ -15,7 +15,7 @@ import history from '../history'
 const url = process.env.REACT_APP_BASE_URL
 
 export const setCoupons = async (dispatch, getState) => {
-  const response = await fetch(`${url}/coupons/`).then(res => res.json())
+  const response = await fetch(`${url}/coupons`).then(res => res.json())
   dispatch({ type: SET_COUPONS, payload: response })
 }
 export const deleteCoupon = id => async (dispatch, getState) => {
@@ -70,9 +70,9 @@ export const createCoupon = (data, history) => async (dispatch, getState) => {
   }).then(res => res.json())
 
   if (result.ok) {
-    dispatch(setCoupons)
+    // dispatch(setCoupons)
     // dispatch({ type: IS_ACTIVE, payload: true })
-    history.push('/coupons')
+    history.push('/coupons/billjoy090967@gmail.com')
   } else {
     // handle error
   }
@@ -97,7 +97,9 @@ export const updateCoupon = (data, history) => async (dispatch, getState) => {
   }).then(res => res.json())
 
   if (result.ok) {
-    dispatch(setCoupons)
+    // dispatch(setCoupons)
+    history.push('/coupons/billjoy090967@gmail.com')
+  } else {
   }
 }
 export const onChangeEditCouponForm = (field, value) => (

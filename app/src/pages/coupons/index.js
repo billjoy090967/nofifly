@@ -25,7 +25,7 @@ class Coupons extends React.Component {
       <div>
         <MenuAppBar title="My Coupons" account />
         <Typography />
-        <List style={{ padding: 0, marginBottom: 60 }}>
+        <List style={{ padding: 0, marginBottom: 10 }}>
           <EnhancedTable couponsByEmailData={this.props.state.couponsByEmail} />
         </List>
         <img

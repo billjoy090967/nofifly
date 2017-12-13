@@ -30,7 +30,12 @@ const updateUser = user => update(user)
 
 const getCoupon = id => get(id)
 const createCoupon = doc => {
-  doc._id = pkGenerator('coupon_', doc.email.name.expirationDate)
+  doc._id = pkGenerator(
+    'coupon_',
+    doc.email ||
+      'billjoy090967@gmail.com' + '_' + doc.name + '_' + doc.expirationDate
+  )
+  console.log('doc._id', doc._id)
   return create(doc)
 }
 const updateCoupon = doc => update(doc)

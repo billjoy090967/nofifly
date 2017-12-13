@@ -17,6 +17,7 @@ const styles = theme => ({
 class CouponForm extends React.Component {
   render() {
     const { classes } = this.props
+
     return (
       <form
         style={{ marginTop: 8 }}

@@ -28,14 +28,15 @@ class EditCouponForm extends React.Component {
         }}
       >
         <TextField
+          name="category"
           label="Category"
           value={this.props.editCoupon.category}
           onChange={e => {
             this.props.onChange('category', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
         />
         <TextField
           name="name"
@@ -46,7 +47,6 @@ class EditCouponForm extends React.Component {
           }}
           margin="normal"
           className={classes.input}
-          multiline
           required
         />
         <TextField
@@ -71,7 +71,6 @@ class EditCouponForm extends React.Component {
           margin="normal"
           className={classes.input}
           required
-          multiline
         />
         <TextField
           name="description"
@@ -94,7 +93,6 @@ class EditCouponForm extends React.Component {
           aria-label="edit"
           className="fab-button"
           disabled={this.props.isActive}
-          onClick={e => history.goBack()}
         >
           <SaveIcon />
         </Button>
