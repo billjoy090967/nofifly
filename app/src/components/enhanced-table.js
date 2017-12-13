@@ -18,10 +18,11 @@ import Table, {
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
-import IconButton from 'material-ui/IconButton'
 import Tooltip from 'material-ui/Tooltip'
 import history from '../history'
 import { connect } from 'react-redux'
+import { pathOr } from 'ramda'
+import { COUPONS_BY_EMAIL } from '../constants'
 
 let counter = 0
 function createData(category, name, deal, expirationDate) {
@@ -162,15 +163,7 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'name',
       selected: [],
-      data: [
-        createData('Restaurant', 'Pizza Hut', 'BOGO', '2018-05-31'),
-        createData('Service', 'Jiffy Lube', '$19.99', '2017-12-31'),
-        createData('Entertainment', 'Wild Blue Ropes', '$20.00', '2018-07-31'),
-        createData('Store', 'Kohls', '$25.00', '2018-11-01'),
-        createData('Restaurant', 'Perkins', '$1.00', '2018-12-01'),
-        createData('Grocery', 'Publix', '$0.50', '2017-12-20'),
-        createData('Grocery', 'Harris Teeter', '$2.50', '2017-12-25')
-      ].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
+      data: [].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
       page: 0,
       rowsPerPage: 5
     }
@@ -186,10 +179,15 @@ class EnhancedTable extends React.Component {
 
     const data =
       order === 'desc'
-        ? this.state.data.sort((a, b) => (b[orderBy] < a[orderBy] ? -1 : 1))
-        : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1))
+        ? this.props.couponsByEmailData.sort(
+            (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
+          )
+        : this.props.couponsByEmailData.sort(
+            (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1)
+          )
 
-    this.setState({ data, order, orderBy })
+    this.setState({ order, orderBy })
+    this.props.dispatch({ type: COUPONS_BY_EMAIL, payload: data })
   }
 
   handleKeyDown = (event, id) => {
@@ -229,6 +227,8 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1
 
+  // the data for the table should be availabe as this.props.couponsByEmailData
+  // you need to map over this.props.couponsByEmailData
   render() {
     const { classes } = this.props
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state
@@ -248,16 +248,13 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody style={{ paddingLeft: '20px' }}>
-              {data
+              {pathOr([], ['couponsByEmailData'], this.props)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   return (
                     <TableRow
                       hover
-                      onClick={e =>
-                        history.push(
-                          '/coupons/coupon_billjoy090967@gmail.com_harris_teeter_2018-04-15/edit'
-                        )}
+                      onClick={e => history.push('/coupons/' + n._id + '/edit')}
                       tabIndex={-1}
                       key={n.id}
                     >
@@ -269,7 +266,7 @@ class EnhancedTable extends React.Component {
                   )
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
+                <TableRow style={{ height: 9 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}

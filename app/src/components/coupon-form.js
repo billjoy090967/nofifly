@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import addACoupon from '../media/images/add-a-coupon.jpg'
@@ -16,67 +17,71 @@ const styles = theme => ({
 class CouponForm extends React.Component {
   render() {
     const { classes } = this.props
+
     return (
       <form
         style={{ marginTop: 8 }}
         autoComplete="off"
         onSubmit={e => {
-          console.log('e', e),
-            this.props.createCoupon(e),
-            history.push('/coupons')
+          e.preventDefault()
+          this.props.onSubmit()
         }}
       >
         <TextField
+          name="category"
           label="Category"
           value={this.props.coupon.category}
           onChange={e => {
             this.props.onChange('category', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
         />
         <TextField
+          name="storeName"
           label="Store Name"
           value={this.props.coupon.name}
           onChange={e => {
             this.props.onChange('name', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
           multiline
         />
         <TextField
+          name="description"
           label="Description"
           value={this.props.coupon.description}
           onChange={e => {
             this.props.onChange('description', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
           multiline
         />
         <TextField
+          name="deal"
           label="Deal"
           value={this.props.coupon.deal}
           onChange={e => {
             this.props.onChange('deal', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
         />
         <TextField
+          name="expirationDate"
           label="Expiration Date"
           value={this.props.coupon.expirationDate}
           onChange={e => {
             this.props.onChange('expirationDate', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
         />
         <br />
         <br />
@@ -102,5 +107,7 @@ class CouponForm extends React.Component {
     )
   }
 }
-
+CouponForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
 export default withStyles(styles)(CouponForm)

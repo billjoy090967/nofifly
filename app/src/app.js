@@ -20,8 +20,8 @@ const App = props => {
         <Route path="/about" component={About} />
         <Route path="/legal" component={Legal} />
         <Route path="/login" component={Login} />
-        <Route exact path="/coupons" component={Coupons} />
         <Route exact path="/coupons/new" component={NewCoupon} />
+        <Route exact path="/coupons/:id" component={Coupons} />
         <Route path="/coupons/:id/edit" component={EditCoupon} />
         <Route exact path="/users" component={Users} />
         <Route exact path="/users/:id/edit" component={EditUser} />

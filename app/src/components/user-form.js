@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
+import Button from 'material-ui/Button'
 import SendIcon from 'material-ui-icons/Send'
+import history from '../history'
 
 const styles = theme => ({
   input: {
@@ -19,7 +21,6 @@ class UserForm extends React.Component {
     return (
       <form
         style={{ marginTop: 8 }}
-        autoComplete="off"
         onSubmit={e => {
           e.preventDefault()
           this.props.onSubmit()
@@ -58,7 +59,6 @@ class UserForm extends React.Component {
           margin="normal"
           className={classes.input}
           required
-          multiline
         />
         <TextField
           name="zipcode"
@@ -70,7 +70,6 @@ class UserForm extends React.Component {
           margin="normal"
           className={classes.input}
           required
-          multiline
         />
         <TextField
           name="password"
@@ -80,24 +79,22 @@ class UserForm extends React.Component {
             this.props.onChange('password', e.target.value)
           }}
           margin="normal"
-          required
           className={classes.input}
+          required
         />
         <br />
         <br />
-        <button
+        <Button
+          fab
+          color="secondary"
           type="submit"
-          style={{
-            border: 0,
-            background: 'none',
-            position: 'fixed',
-            left: '5px'
-          }}
+          aria-label="edit"
           className="fab-button"
-          // disabled={this.props.isActive}
+          disabled={this.props.isActive}
+          onClick={e => history.goBack()}
         >
           <SendIcon />
-        </button>
+        </Button>
       </form>
     )
   }
