@@ -46,7 +46,7 @@ const MenuAppBar = props => {
 
   return (
     <div id="menu-container" className={classes.root}>
-      <AppBar position="fixed" style={{ maxHeight: '150px' }}>
+      <AppBar position="fixed" color="secondary" style={{ maxHeight: '150px' }}>
         <Toolbar>
           <IconButton
             className={classes.firstButton}
@@ -56,11 +56,14 @@ const MenuAppBar = props => {
           >
             <MenuIcon />
           </IconButton>
-          <img
-            alt="notifly-logo"
-            src={notiflyLogo}
-            className={classes.bannerLogo}
-          />
+
+          <Link to="/" className="router-link">
+            <img
+              alt="notifly-logo"
+              src={notiflyLogo}
+              className={classes.bannerLogo}
+            />
+          </Link>
 
           <Typography type="title" color="inherit" className={classes.flex}>
             {props.title}

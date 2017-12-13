@@ -28,6 +28,7 @@ class UserLogin extends React.Component {
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value })
+    console.log(prop, event.target.value)
   }
 
   handleMouseDownPassword = event => {
@@ -86,7 +87,7 @@ class UserLogin extends React.Component {
             left: '5px'
           }}
           className="fab-button"
-          onClick={e => history.push('/coupons')}
+          onClick={e => history.push('/coupons/' + this.state.email)}
           // disabled={this.props.isActive}
         >
           <SendIcon />

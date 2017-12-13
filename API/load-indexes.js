@@ -36,3 +36,10 @@ db
     console.log('Created an index on the expiration date.')
   })
   .catch(err => console.log(err))
+
+db
+  .createIndex({ index: { fields: ['userId'] } })
+  .then(() => {
+    console.log('Created an index on the expiration date.')
+  })
+  .catch(err => console.log(err))

@@ -1,8 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
+import history from '../history'
 
 const styles = theme => ({
   input: {
@@ -18,7 +20,13 @@ class EditUserForm extends React.Component {
     const { classes } = this.props
 
     return (
-      <form style={{ marginTop: 8 }} onSubmit={this.props.editUser}>
+      <form
+        style={{ marginTop: 8 }}
+        onSubmit={e => {
+          e.preventDefault()
+          this.props.onSubmit()
+        }}
+      >
         <TextField
           label="First Name"
           value={this.props.editUser.firstName}
@@ -65,11 +73,12 @@ class EditUserForm extends React.Component {
         <br />
         <Button
           fab
-          disabled={this.props.isActive}
-          className="fab-button"
           color="secondary"
-          aria-label="save"
           type="submit"
+          aria-label="edit"
+          className="fab-button"
+          disabled={this.props.isActive}
+          onClick={e => history.push('/coupons/' + this.state.email)}
         >
           <SaveIcon />
         </Button>
@@ -77,5 +86,7 @@ class EditUserForm extends React.Component {
     )
   }
 }
-
+EditUserForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
 export default withStyles(styles)(EditUserForm)

@@ -1,9 +1,24 @@
 const { assoc, toLower } = require('ramda')
 const pkGenerator = require('./lib/build-pk')
-const { get, create, update, deleteDoc, allDocs } = require('./lib/dal-helper')
+const {
+  get,
+  create,
+  update,
+  deleteDoc,
+  allDocs,
+  findDocs
+} = require('./lib/dal-helper')
 
 const getAllCoupons = options => allDocs(options || { include_docs: true })
 const getAllUsers = options => allDocs(options || { include_docs: true })
+const getCouponsByEmail = userId =>
+  findDocs({
+    selector: {
+      userId: {
+        $eq: userId
+      }
+    }
+  })
 
 const createUser = user => {
   user._id = pkGenerator('user_', user.email)
@@ -15,7 +30,12 @@ const updateUser = user => update(user)
 
 const getCoupon = id => get(id)
 const createCoupon = doc => {
-  doc._id = pkGenerator('coupon_', doc.email.name.expirationDate)
+  doc._id = pkGenerator(
+    'coupon_',
+    doc.email ||
+      'billjoy090967@gmail.com' + '_' + doc.name + '_' + doc.expirationDate
+  )
+  console.log('doc._id', doc._id)
   return create(doc)
 }
 const updateCoupon = doc => update(doc)
@@ -31,6 +51,7 @@ const dal = {
   getCoupon,
   updateCoupon,
   deleteCoupon,
-  getAllCoupons
+  getAllCoupons,
+  getCouponsByEmail
 }
 module.exports = dal

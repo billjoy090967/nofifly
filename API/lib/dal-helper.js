@@ -12,7 +12,7 @@ const create = doc => {
 }
 const update = doc => db.put(doc)
 const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
-const find = id => db.find(id)
+const findDocs = query => db.find(query).then(queryResult => queryResult.docs)
 
 const allDocs = options => {
   return db.allDocs(options).then(docs => pluck('doc', docs.rows))
@@ -23,7 +23,7 @@ const dalHelper = {
   create,
   update,
   deleteDoc,
-  find,
+  findDocs,
   allDocs
 }
 

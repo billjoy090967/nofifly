@@ -5,13 +5,23 @@ import {
   IS_ACTIVE,
   SET_EDIT_COUPON,
   ONCHANGE_EDIT_COUPON_FORM,
-  CONFIRM_COUPON_DELETE
+  CONFIRM_COUPON_DELETE,
+  COUPONS_BY_EMAIL
 } from '../constants'
 import { merge, not } from 'ramda'
 
 export const coupons = (state = [], action) => {
   switch (action.type) {
     case SET_COUPONS:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export const couponsByEmail = (state = [], action) => {
+  switch (action.type) {
+    case COUPONS_BY_EMAIL:
       return action.payload
     default:
       return state
@@ -52,7 +62,6 @@ export const coupon = (state = setDefaultCoupon, action) => {
 }
 
 export const editCoupon = (state = setDefaultCoupon, action) => {
-  console.log('action', action.payload)
   switch (action.type) {
     case SET_EDIT_COUPON:
       return action.payload

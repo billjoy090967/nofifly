@@ -15,7 +15,11 @@ class NewCoupon extends React.Component {
     return (
       <div>
         <MenuAppBar title="Add a Coupon!" search goBack {...this.props} />
-        <CouponForm {...this.props} />
+        <CouponForm
+          coupon={this.props.coupon}
+          onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit(this.props.coupon, this.props.history)}
+        />
       </div>
     )
   }
@@ -29,7 +33,9 @@ const mapActionsToProps = dispatch => {
       dispatch({ type: UPDATE_NEW_COUPON_FORM, payload: { [field]: value } })
       dispatch(isActive)
     },
-    createCoupon: () => dispatch(createCoupon),
+    onSubmit: (data, history) => e => {
+      dispatch(createCoupon(data, history))
+    },
     isSubmitActive: () => dispatch(isActive)
   }
 }
