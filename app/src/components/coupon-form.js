@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
+import { ListItem, FormControl, InputLabel, Select } from 'material-ui'
 import TextField from 'material-ui/TextField'
 import addACoupon from '../media/images/add-a-coupon.jpg'
 import history from '../history'
@@ -27,17 +28,26 @@ class CouponForm extends React.Component {
           this.props.onSubmit()
         }}
       >
-        <TextField
-          name="category"
-          label="Category"
-          value={this.props.coupon.category}
-          onChange={e => {
-            this.props.onChange('category', e.target.value)
-          }}
-          margin="normal"
-          className={classes.input}
-          required
-        />
+        <ListItem>
+          <FormControl>
+            <InputLabel>Category</InputLabel>
+            <Select
+              native
+              value={this.props.coupon.category}
+              onChange={e => {
+                this.props.onChange('category', e.target.value)
+              }}
+            >
+              <option value="" />
+              <option value="Entertainment">Entertainment</option>
+              <option value="Grocery">Grocery</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Service">Service</option>
+              <option value="Store">Store</option>
+            </Select>
+          </FormControl>
+        </ListItem>
+
         <TextField
           name="storeName"
           label="Store Name"

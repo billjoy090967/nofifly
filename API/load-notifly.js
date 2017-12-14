@@ -138,6 +138,16 @@ db.bulkDocs([
     description: '$100 Gift Certificate'
   },
   {
+    _id: 'coupon_tiffanyjoy160@gmail.com_bed_bath_and_beyond_2018-04-15',
+    userId: 'user_tiffanyjoy160@gmail.com',
+    type: 'coupon',
+    category: 'Store',
+    name: 'Bed, Bath, & Beyond',
+    deal: '20% Off',
+    expirationDate: '2018-04-15',
+    description: '20% off one item'
+  },
+  {
     _id: 'coupon_rbickel1945@att.net_marcus-theatres_2018-02-28',
     userId: 'user_rbickel1945@att.net',
     type: 'coupon',
