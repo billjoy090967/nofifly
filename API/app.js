@@ -137,24 +137,6 @@ app.get('/users', (req, res, next) => {
     })
     .catch(err => next(new HTTPError(err.status, err.message)))
 })
-// app.get('/users', (req, res, next) => {
-//   let searchStr = compose(split(':'), pathOr('', ['query', 'filter']))(req)
-//   const filter = pathOr(null, ['query', 'filter'])(req)
-//   var options = {}
-//   if (filter) {
-//     options = {
-//       include_docs: true,
-//       startkey: 'user_' + last(searchStr),
-//       endkey: 'user_' + last(searchStr) + '\ufff0'
-//     }
-//   } else {
-//     options = {
-//       include_docs: true,
-//       startkey: 'user_',
-//       endkey: 'user_\ufff0'
-//     }
-//   }
-// })
 
 /// //////////////////
 /// //// coupons

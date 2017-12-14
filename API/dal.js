@@ -35,7 +35,6 @@ const createCoupon = doc => {
     doc.email ||
       'billjoy090967@gmail.com' + '_' + doc.name + '_' + doc.expirationDate
   )
-  console.log('doc._id', doc._id)
   return create(doc)
 }
 const updateCoupon = doc => update(doc)

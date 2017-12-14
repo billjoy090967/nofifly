@@ -116,5 +116,55 @@ db.bulkDocs([
     description: '$50.00',
     deal: '$50.00',
     expirationDate: '2020-12-31'
+  },
+  {
+    _id: 'coupon_tiffanyjoy160@gmail.com_harris-teeter_2017-12-15',
+    userId: 'user_tiffanyjoy160@gmail.com',
+    type: 'coupon',
+    category: 'Grocery',
+    name: 'Harris Teeter',
+    deal: '$0.50',
+    expirationDate: '2017-12-16',
+    description: '$0.50 off Minute Maid Orange Juice'
+  },
+  {
+    _id: 'coupon_tiffanyjoy160@gmail.com_new-york-and-company_2019-12-15',
+    userId: 'user_tiffanyjoy160@gmail.com',
+    type: 'coupon',
+    category: 'Store',
+    name: 'New York & Company',
+    deal: '$100.00',
+    expirationDate: '2019-12-15',
+    description: '$100 Gift Certificate'
+  },
+  {
+    _id: 'coupon_rbickel1945@att.net_marcus-theatres_2018-02-28',
+    userId: 'user_rbickel1945@att.net',
+    type: 'coupon',
+    category: 'Entertainment',
+    name: 'Marcus Theatres',
+    deal: 'Free Movie',
+    expirationDate: '2018-02-28',
+    description: 'Free adult pass for one movie'
+  },
+  {
+    _id: 'coupon_rbickel1945@att.net_hu-hot-mongolian-grill_2018-06-30',
+    userId: 'user_rbickel1945@att.net',
+    type: 'coupon',
+    category: 'Restaurant',
+    name: 'HuHot Mongolian Grill',
+    deal: 'Free Appetizer',
+    expirationDate: '2018-06-30',
+    description: 'Free appetizer with a purchase of an entree'
+  },
+  {
+    _id: 'coupon_rbickel1945@att.net_festival-foods_2018-03-31',
+    userId: 'user_rbickel1945@att.net',
+    type: 'coupon',
+    category: 'Grocery',
+    name: 'Festival Foods',
+    deal: '$10.00 Off',
+    expirationDate: '2018-03-31',
+    description: '$10.00 off 10 Festy Burgers'
   }
 ])
