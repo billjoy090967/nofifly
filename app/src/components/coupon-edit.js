@@ -92,7 +92,7 @@ class EditCouponForm extends React.Component {
           type="submit"
           aria-label="edit"
           className="fab-button"
-          disabled={this.props.isActive}
+          // disabled={this.props.isActive}
         >
           <SaveIcon />
         </Button>

@@ -34,7 +34,15 @@ const aboutText = [
   },
 
   {
-    text: <img alt="Coupy" src={notifly} width="200" height="auto" />,
+    text: (
+      <img
+        alt="Coupy"
+        src={notifly}
+        width="100"
+        height="auto"
+        class="animated zoomInRight"
+      />
+    ),
     style: 'italic',
     bottomMargin: false
   }

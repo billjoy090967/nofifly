@@ -20,11 +20,12 @@ class Home extends React.Component {
         <img
           src={notifly}
           alt="loading"
+          class="animated zoomInRight"
           style={{
             display: 'block',
             margin: '0 auto',
             textAlign: 'center',
-            width: '10%',
+            width: '15%',
             maxWidth: '200px'
           }}
         />

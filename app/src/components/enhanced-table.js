@@ -1,6 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -148,7 +145,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3
   },
   table: {
-    minWidth: 800
+    maxWidth: 800
   },
   tableWrapper: {
     overflowX: 'auto'
@@ -227,8 +224,6 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1
 
-  // the data for the table should be availabe as this.props.couponsByEmailData
-  // you need to map over this.props.couponsByEmailData
   render() {
     const { classes } = this.props
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state
@@ -266,7 +261,7 @@ class EnhancedTable extends React.Component {
                   )
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: 9 * emptyRows }}>
+                <TableRow style={{ height: 2 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
