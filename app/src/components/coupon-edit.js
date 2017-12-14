@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
-import history from '../history'
 
 const styles = theme => ({
   input: {

@@ -28,7 +28,6 @@ class UserLogin extends React.Component {
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value })
-    console.log(prop, event.target.value)
   }
 
   handleMouseDownPassword = event => {

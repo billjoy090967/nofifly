@@ -6,7 +6,7 @@ import MenuAppBar from '../components/menuAppBar'
 import PaperSheet from '../components/paperSheet'
 import { connect } from 'react-redux'
 import notifly from '../media/images/notifly.jpg'
-import Favorite from 'material-ui-icons/Favorite'
+import Home from 'material-ui-icons/Home'
 import Legal from 'material-ui-icons/Gavel'
 import { CardMedia } from 'material-ui/Card'
 import { Link } from 'react-router-dom'
@@ -72,7 +72,7 @@ const About = props => {
             color="primary"
             style={{ marginTop: 16, marginLeft: 16 }}
           >
-            <Favorite style={{ marginRight: 7, height: 16, width: 16 }} />
+            <Home style={{ marginRight: 7, height: 16, width: 16 }} />
             Home
           </Button>
         </Link>

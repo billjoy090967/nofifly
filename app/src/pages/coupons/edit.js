@@ -11,7 +11,6 @@ import {
   onChangeEditCouponForm,
   setCoupons
 } from '../../action-creators/coupons'
-import { setUsers } from '../../action-creators/users'
 
 class EditCoupon extends React.Component {
   componentDidMount() {

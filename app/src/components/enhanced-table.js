@@ -21,12 +21,6 @@ import { connect } from 'react-redux'
 import { pathOr } from 'ramda'
 import { COUPONS_BY_EMAIL } from '../constants'
 
-let counter = 0
-function createData(category, name, deal, expirationDate) {
-  counter += 1
-  return { id: counter, category, name, deal, expirationDate }
-}
-
 const columnData = [
   { id: 'category', numeric: true, disablePadding: false, label: 'Category' },
   { id: 'name', numeric: true, disablePadding: false, label: 'Name' },
@@ -124,7 +118,9 @@ let EnhancedTableToolbar = props => {
         {numSelected > 0 ? (
           <Typography type="subheading">{numSelected} selected</Typography>
         ) : (
-          <Typography type="title" />
+          <Typography type="title">
+            <h6>Your Customized List</h6>
+          </Typography>
         )}
       </div>
       <div className={classes.spacer} />
@@ -160,7 +156,7 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'name',
       selected: [],
-      data: [].sort((a, b) => (a.expirationDate < b.expirationDate ? -1 : 1)),
+      data: [].sort((a, b) => (a.name < b.name ? -1 : 1)),
       page: 0,
       rowsPerPage: 5
     }
@@ -229,7 +225,7 @@ class EnhancedTable extends React.Component {
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage)
-    console.log('props', this.props)
+
     return (
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -261,7 +257,7 @@ class EnhancedTable extends React.Component {
                   )
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: 2 * emptyRows }}>
+                <TableRow style={{ height: 0 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}

@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles'
 import { ListItem, FormControl, InputLabel, Select } from 'material-ui'
 import TextField from 'material-ui/TextField'
 import addACoupon from '../media/images/add-a-coupon.jpg'
-import history from '../history'
 
 const styles = theme => ({
   input: {

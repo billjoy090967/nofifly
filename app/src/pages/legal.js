@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import Button from 'material-ui/Button'
 import Gavel from 'material-ui-icons/Gavel'
 import Help from 'material-ui-icons/Help'
-import Favorite from 'material-ui-icons/Favorite'
+import Home from 'material-ui-icons/Home'
 import Avatar from 'material-ui/Avatar'
 import { CardHeader } from 'material-ui/Card'
 
@@ -72,7 +72,7 @@ const Legal = props => {
             color="primary"
             style={{ marginTop: 16, marginLeft: 15 }}
           >
-            <Favorite style={{ marginRight: 7, height: 16, width: 16 }} />
+            <Home style={{ marginRight: 7, height: 16, width: 16 }} />
             Home
           </Button>
         </Link>
