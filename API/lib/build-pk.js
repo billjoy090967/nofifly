@@ -12,7 +12,7 @@ module.exports = (prefix, value) => {
   valueArr = split(value)
   return compose(
     concat(prefix),
-    join('-'),
+    join('_'),
     reject(s => s === ' ' || s === '–'),
     split(' '),
     trim,

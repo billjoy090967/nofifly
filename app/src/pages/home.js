@@ -4,7 +4,7 @@ import withDrawer from '../components/withDrawer'
 import MenuAppBar from '../components/menuAppBar'
 import { connect } from 'react-redux'
 import addACoupon from '../media/images/add-a-coupon.jpg'
-import notifly from '../media/images/notifly.jpg'
+import coupy from '../media/images/coupy.png'
 import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
@@ -18,23 +18,23 @@ class Home extends React.Component {
         <br />
         <br />
         <img
-          src={notifly}
+          src={coupy}
           alt="loading"
           class="animated zoomInRight"
           style={{
             display: 'block',
             margin: '0 auto',
             textAlign: 'center',
-            width: '15%',
+            width: '25%',
             maxWidth: '200px'
           }}
         />
-        <Link to="/login" style={{ textDecoration: 'none' }}>
+        <Link to="/coupons/new" style={{ textDecoration: 'none' }}>
           <img
             src={addACoupon}
             alt="loading"
             style={{
-              padding: '70px',
+              padding: '50px',
               display: 'block',
               margin: '0 auto',
               textAlign: 'center',

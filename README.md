@@ -7,4 +7,4 @@ A self-built PWA to remind you of the coupons and giftcards you have in your wal
 - [Wireframes](./docs/wireframes)
 - [API](./api/readme.md)
 
-<img src="/app/src/media/images/notifly.jpg">
+<img src="/app/src/media/images/coupy.png">
