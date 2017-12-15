@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import SaveIcon from 'material-ui-icons/Save'
+import { ListItem, FormControl, InputLabel, Select } from 'material-ui'
 
 const styles = theme => ({
   input: {
@@ -26,17 +27,26 @@ class EditCouponForm extends React.Component {
           this.props.onSubmit()
         }}
       >
-        <TextField
-          name="category"
-          label="Category"
-          value={this.props.editCoupon.category}
-          onChange={e => {
-            this.props.onChange('category', e.target.value)
-          }}
-          margin="normal"
-          className={classes.input}
-          required
-        />
+        <ListItem>
+          <FormControl>
+            <InputLabel>Category</InputLabel>
+            <Select
+              native
+              value={this.props.editCoupon.category}
+              onChange={e => {
+                this.props.onChange('category', e.target.value)
+              }}
+            >
+              <option value="" />
+              <option value="Entertainment">Entertainment</option>
+              <option value="Grocery">Grocery</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Service">Service</option>
+              <option value="Store">Store</option>
+            </Select>
+          </FormControl>
+        </ListItem>
+
         <TextField
           name="name"
           label="Store Name"
@@ -63,7 +73,8 @@ class EditCouponForm extends React.Component {
         <TextField
           name="expirationDate"
           label="Expiration Date"
-          value={this.props.editCoupon.expirationDate}
+          type="date"
+          defaultValue="2017-12-15"
           onChange={e => {
             this.props.onChange('expirationDate', e.target.value)
           }}

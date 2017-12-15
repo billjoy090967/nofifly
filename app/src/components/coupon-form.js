@@ -48,7 +48,7 @@ class CouponForm extends React.Component {
         </ListItem>
 
         <TextField
-          name="storeName"
+          name="name"
           label="Store Name"
           value={this.props.coupon.name}
           onChange={e => {
@@ -84,7 +84,8 @@ class CouponForm extends React.Component {
         <TextField
           name="expirationDate"
           label="Expiration Date"
-          value={this.props.coupon.expirationDate}
+          type="date"
+          defaultValue="2017-12-15"
           onChange={e => {
             this.props.onChange('expirationDate', e.target.value)
           }}
